@@ -40,7 +40,8 @@
     "@testing-library/user-event": "^14.4.3",
     "concurrently": "^7.5.0",
     "eslint": "^8.26.0",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "prettier": "2.7.1"
   },
   "proxy": "http://localhost:8080"
 }
