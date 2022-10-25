@@ -26,4 +26,3 @@ app.get("/api/data-for-react", async (req, res) => {
 app.listen(app.get("port"), () => {
   console.log(`Node app listening on port ${app.get("port")}`);
 });
-
