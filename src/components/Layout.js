@@ -7,9 +7,9 @@ export default function Layout() {
   return (
     <Container>
       <Header />
-      <main>
+      <Main>
         <Outlet />
-      </main>
+      </Main>
       <Nav />
     </Container>
   );
@@ -17,4 +17,8 @@ export default function Layout() {
 
 const Container = styled.div`
   text-align: center;
+`;
+
+const Main = styled.main`
+  margin: 5rem 0;
 `;
