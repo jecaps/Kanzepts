@@ -9,7 +9,7 @@ export default function Card({
 }) {
   return (
     <StyledCard>
-      <img src={image} alt="" />
+      <img src={image} alt={title} />
       <h3>{title}</h3>
       <CardDetails>
         <div>
