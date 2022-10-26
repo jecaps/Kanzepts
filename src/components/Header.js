@@ -22,6 +22,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 10;
 
   div {
     display: flex;
