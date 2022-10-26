@@ -5,24 +5,17 @@ import Form from "./pages/Form";
 import Plan from "./pages/Plan";
 import History from "./pages/History";
 import Error from "./pages/Error";
-import styled from "styled-components";
 
 export default function App() {
   return (
-    <Container>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="form" element={<Form />} />
-          <Route path="plan" element={<Plan />} />
-          <Route path="history" element={<History />} />
-          <Route path="*" element={<Error />} />
-        </Route>
-      </Routes>
-    </Container>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="form" element={<Form />} />
+        <Route path="plan" element={<Plan />} />
+        <Route path="history" element={<History />} />
+        <Route path="*" element={<Error />} />
+      </Route>
+    </Routes>
   );
 }
-
-const Container = styled.div`
-  text-align: center;
-`;
