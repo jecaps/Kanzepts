@@ -19,6 +19,9 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
   div {
     display: flex;
