@@ -1,6 +1,5 @@
-import Header from "./components/Header";
-import Nav from "./components/Nav";
 import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Form from "./pages/Form";
 import Plan from "./pages/Plan";
@@ -11,15 +10,15 @@ import styled from "styled-components";
 export default function App() {
   return (
     <Container>
-      <Header />
       <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="form" element={<Form />} />
-        <Route path="plane" element={<Plan />} />
-        <Route path="history" element={<History />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="form" element={<Form />} />
+          <Route path="plan" element={<Plan />} />
+          <Route path="history" element={<History />} />
+          <Route path="*" element={<Error />} />
+        </Route>
       </Routes>
-      <Nav />
     </Container>
   );
 }
