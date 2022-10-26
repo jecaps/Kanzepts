@@ -1,3 +1,12 @@
+import { useContext } from "react";
+import { RecipeContext } from "../context/RecipeContext";
+
 export default function Home() {
-  return <div>Home Page is still under construction</div>;
+  const { recipes } = useContext(RecipeContext);
+
+  return (
+    <>
+      <h2>Recipes you might enjoy</h2>
+    </>
+  );
 }
