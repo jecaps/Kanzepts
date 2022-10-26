@@ -11,7 +11,6 @@ import data from "./data";
 
 export default function App() {
   const [recipes, setRecipes] = useState(data);
-  console.log(recipes);
 
   return (
     <RecipeContext.Provider value={{ recipes, setRecipes }}>
