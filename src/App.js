@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { RecipeContext } from "./context/RecipeContext";
 import Layout from "./components/Layout";
@@ -8,10 +8,31 @@ import Plan from "./pages/Plan";
 import History from "./pages/History";
 import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
+import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import data from "./data";
 
 export default function App() {
-  const [recipes, setRecipes] = useState(data);
+  // const [data, setData] = useState([]);
+  const [recipes, setRecipes] = useState(
+    loadFromLocal("saved recipes") ?? data
+  );
+
+  useEffect(() => {
+    saveToLocal("saved recipes, recipes");
+  }, [recipes]);
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     // try to get from db if not get from api
+  //     const RES = await fetch(
+  //       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY}&number=25`
+  //     );
+  //     const DATA = await RES.json();
+  //     // write to db
+  //     console.log(DATA);
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <RecipeContext.Provider value={{ recipes, setRecipes }}>
