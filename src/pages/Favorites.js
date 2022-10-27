@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import Card from "../components/Card";
 import { RecipeContext } from "../context/RecipeContext";
+import Card from "../components/Card";
 import styled from "styled-components";
 
 export default function Favorites() {
-  const { recipes, setRecipes } = useContext(RecipeContext);
+  const { recipes } = useContext(RecipeContext);
 
   return (
     <>
@@ -19,11 +19,9 @@ export default function Favorites() {
               image={recipe.image}
               title={recipe.title}
               servings={recipe.servings}
-              duration={recipe.duration}
+              duration={recipe.readyInMinutes}
               description={recipe.summary}
               favorite={recipe.favorite}
-              recipes={recipes}
-              setRecipes={setRecipes}
             />
           ))}
       </CardsContainer>

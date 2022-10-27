@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { RecipeContext } from "../context/RecipeContext";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
@@ -9,9 +11,9 @@ export default function Card({
   duration,
   description,
   favorite,
-  recipes,
-  setRecipes,
 }) {
+  const { recipes, setRecipes } = useContext(RecipeContext);
+
   return (
     <StyledCard>
       <FaveBtn
