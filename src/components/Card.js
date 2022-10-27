@@ -2,23 +2,26 @@ import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
 export default function Card({ recipe }) {
+  const { id, isFavorite, image, title, servings, readyInMinutes, summary } =
+    recipe;
+
   return (
     <StyledCard>
-      <FaveBtn id={recipe.id} isFavorite={recipe.isFavorite} />
-      <img src={recipe.image} alt={recipe.title} />
-      <h3>{recipe.title}</h3>
+      <FaveBtn id={id} isFavorite={isFavorite} />
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
       <CardDetails>
         <div>
           <p>Servings</p>
-          <h4>{recipe.servings}</h4>
+          <h4>{servings}</h4>
         </div>
         <div>
           <p>Duration</p>
-          <h4>{recipe.readyInMinutes}min</h4>
+          <h4>{readyInMinutes}min</h4>
         </div>
       </CardDetails>
       {/* .replace() is used to remove html tags from the text*/}
-      <Description>{recipe.summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+      <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
     </StyledCard>
   );
 }
