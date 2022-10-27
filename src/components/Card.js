@@ -1,41 +1,29 @@
-import { useContext } from "react";
-import { RecipeContext } from "../context/RecipeContext";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
-export default function Card({
-  id,
-  image,
-  title,
-  servings,
-  duration,
-  description,
-  favorite,
-}) {
-  const { recipes, setRecipes } = useContext(RecipeContext);
-
+export default function Card({ recipe }) {
   return (
     <StyledCard>
       <FaveBtn
-        id={id}
-        favorite={favorite}
-        recipes={recipes}
-        setRecipes={setRecipes}
+        id={recipe.id}
+        favorite={recipe.favorite}
+        // recipes={recipes}
+        // setRecipes={setRecipes}
       />
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
+      <img src={recipe.image} alt={recipe.title} />
+      <h3>{recipe.title}</h3>
       <CardDetails>
         <div>
           <p>Servings</p>
-          <h4>{servings}</h4>
+          <h4>{recipe.servings}</h4>
         </div>
         <div>
           <p>Duration</p>
-          <h4>{duration}min</h4>
+          <h4>{recipe.readyInMinutes}min</h4>
         </div>
       </CardDetails>
       {/* .replace() is used to remove html tags from the text*/}
-      <Description>{description.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+      <Description>{recipe.summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
     </StyledCard>
   );
 }

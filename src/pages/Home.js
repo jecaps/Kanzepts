@@ -11,16 +11,7 @@ export default function Home() {
       <h2>Recipes you might enjoy</h2>
       <CardsContainer>
         {recipes.map((recipe) => (
-          <Card
-            key={recipe.id}
-            id={recipe.id}
-            image={recipe.image}
-            title={recipe.title}
-            servings={recipe.servings}
-            duration={recipe.readyInMinutes}
-            description={recipe.summary}
-            favorite={recipe.favorite}
-          />
+          <Card key={recipe.id} recipe={recipe} />
         ))}
       </CardsContainer>
     </>
