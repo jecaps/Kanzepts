@@ -1,16 +1,22 @@
+import { useContext } from "react";
+import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 
-export default function FaveBtn({ id, favorite, recipes, setRecipes }) {
+export default function FaveBtn({ id, isFavorite }) {
+  const { recipes, setRecipes } = useContext(RecipeContext);
+
   function toggleFavorite() {
     setRecipes(
       recipes.map((recipe) =>
-        recipe.id === id ? { ...recipe, favorite: !recipe.favorite } : recipe
+        recipe.id === id
+          ? { ...recipe, isFavorite: !recipe.isFavorite }
+          : recipe
       )
     );
   }
 
   return (
-    <Button onClick={() => toggleFavorite()} isFavorite={favorite}>
+    <Button onClick={() => toggleFavorite()} isFavorite={isFavorite}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
         <path
           fillRule="evenodd"

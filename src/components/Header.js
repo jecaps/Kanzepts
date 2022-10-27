@@ -1,3 +1,4 @@
+import FavesPageBtn from "./FavesPageBtn";
 import logo from "../image/kanzepts-logo.png";
 import styled from "styled-components";
 
@@ -8,6 +9,7 @@ export default function Header() {
         <img src={logo} alt="kanzepts logo" />
         <p>Kanzepts</p>
       </div>
+      <FavesPageBtn />
     </StyledHeader>
   );
 }
