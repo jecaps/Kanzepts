@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 
-export default function FaveBtn({ id, favorite, recipes, setRecipes }) {
+export default function FaveBtn({ id, favorite }) {
+  const { recipes, setRecipes } = useContext(RecipeContext);
+
   function toggleFavorite() {
     setRecipes(
       recipes.map((recipe) =>
