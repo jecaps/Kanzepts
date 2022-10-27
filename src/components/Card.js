@@ -4,12 +4,7 @@ import styled from "styled-components";
 export default function Card({ recipe }) {
   return (
     <StyledCard>
-      <FaveBtn
-        id={recipe.id}
-        favorite={recipe.favorite}
-        // recipes={recipes}
-        // setRecipes={setRecipes}
-      />
+      <FaveBtn id={recipe.id} isFavorite={recipe.isFavorite} />
       <img src={recipe.image} alt={recipe.title} />
       <h3>{recipe.title}</h3>
       <CardDetails>

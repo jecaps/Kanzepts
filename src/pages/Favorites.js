@@ -11,7 +11,7 @@ export default function Favorites() {
       <h2>Your Favorites</h2>
       <CardsContainer>
         {recipes
-          .filter((recipe) => recipe.favorite)
+          .filter((recipe) => recipe.isFavorite)
           .map((recipe) => (
             <Card key={recipe.id} recipe={recipe} />
           ))}

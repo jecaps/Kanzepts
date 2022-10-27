@@ -4919,6 +4919,6 @@ let DUMMY_DATA = [
   },
 ];
 
-DUMMY_DATA = DUMMY_DATA.map((data) => ({ ...data, favorite: false }));
+DUMMY_DATA = DUMMY_DATA.map((data) => ({ ...data, isFavorite: false }));
 
 export default DUMMY_DATA;
