@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
@@ -8,7 +9,9 @@ export default function Card({ recipe }) {
   return (
     <StyledCard>
       <FaveBtn id={id} isFavorite={isFavorite} />
-      <img src={image} alt={title} />
+      <NavLink to={`/${id}`}>
+        <img src={image} alt={title} />
+      </NavLink>
       <h3>{title}</h3>
       <CardDetails>
         <div>
