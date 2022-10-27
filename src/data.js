@@ -1,4 +1,4 @@
-const DUMMY_DATA = [
+let DUMMY_DATA = [
   {
     vegetarian: false,
     vegan: false,
@@ -4918,5 +4918,7 @@ const DUMMY_DATA = [
       "https://spoonacular.com/cauliflower-brown-rice-and-vegetable-fried-rice-716426",
   },
 ];
+
+DUMMY_DATA = DUMMY_DATA.map((data) => ({ ...data, favorite: false }));
 
 export default DUMMY_DATA;

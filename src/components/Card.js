@@ -1,14 +1,25 @@
+import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
 export default function Card({
+  id,
   image,
   title,
   servings,
   duration,
   description,
+  favorite,
+  recipes,
+  setRecipes,
 }) {
   return (
     <StyledCard>
+      <FaveBtn
+        id={id}
+        favorite={favorite}
+        recipes={recipes}
+        setRecipes={setRecipes}
+      />
       <img src={image} alt={title} />
       <h3>{title}</h3>
       <CardDetails>
@@ -28,6 +39,7 @@ export default function Card({
 }
 
 const StyledCard = styled.li`
+  position: relative;
   list-style: none;
   margin: 0.75rem auto;
   width: 90%;
