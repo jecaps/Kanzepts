@@ -3,12 +3,11 @@ import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
 export default function Card({ recipe }) {
-  const { id, isFavorite, image, title, servings, readyInMinutes, summary } =
-    recipe;
+  const { id, image, title, servings, readyInMinutes, summary } = recipe;
 
   return (
     <StyledCard>
-      <FaveBtn id={id} isFavorite={isFavorite} />
+      <FaveBtn recipe={recipe} />
       <img src={image} alt={title} />
       <h3>{title}</h3>
       <CardDetails>

@@ -4,17 +4,19 @@ import Card from "../components/Card";
 import styled from "styled-components";
 
 export default function Favorites() {
-  const { recipes } = useContext(RecipeContext);
+  const { favorites } = useContext(RecipeContext);
 
   return (
     <>
-      <h2>Your Favorites</h2>
+      {favorites.length ? (
+        <h2>Your Favorites</h2>
+      ) : (
+        <h2>You do not have favorites</h2>
+      )}
       <CardsContainer>
-        {recipes
-          .filter((recipe) => recipe.isFavorite)
-          .map((recipe) => (
-            <Card key={recipe.id} recipe={recipe} />
-          ))}
+        {favorites.map((recipe) => (
+          <Card key={recipe.id} recipe={recipe} />
+        ))}
       </CardsContainer>
     </>
   );
