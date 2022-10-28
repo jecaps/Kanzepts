@@ -30,14 +30,12 @@ export default function Details() {
         <p>health score {healthScore}</p>
       </div>
       <p>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</p>
-      {extendedIngredients.map((ingredient) => (
-        <Ingredient
-          key={ingredient.id}
-          name={ingredient.name}
-          unit={ingredient.unit}
-          amount={ingredient.amount}
-        />
-      ))}
+      <div>
+        <h3>Ingredients</h3>
+        {extendedIngredients.map((ingredient) => (
+          <Ingredient key={ingredient.id} ingredient={ingredient} />
+        ))}
+      </div>
     </div>
   );
 }

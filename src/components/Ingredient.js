@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export default function Ingredient({ name, unit, amount }) {
+export default function Ingredient({ ingredient }) {
+  const { name, unit, amount } = ingredient;
+
   return (
     <IngredientContainer>
       <Amount>
