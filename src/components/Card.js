@@ -9,9 +9,7 @@ export default function Card({ recipe }) {
   return (
     <StyledCard>
       <FaveBtn id={id} isFavorite={isFavorite} />
-      <NavLink to={`/${id}`}>
-        <img src={image} alt={title} />
-      </NavLink>
+      <img src={image} alt={title} />
       <h3>{title}</h3>
       <CardDetails>
         <div>
@@ -25,6 +23,7 @@ export default function Card({ recipe }) {
       </CardDetails>
       {/* .replace() is used to remove html tags from the text*/}
       <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+      <NavLink to={`/${id}`}>Go to recipe ➜</NavLink>
     </StyledCard>
   );
 }
