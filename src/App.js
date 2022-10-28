@@ -24,7 +24,7 @@ export default function App() {
   useEffect(() => {
     async function getData() {
       const RES = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
+        `https://api.spoonacular.com/recipes/random?apiKey=843c8b19ee854a99802e042a6f15d5f9&number=15`
       );
       const DATA = await RES.json();
       setRecipes(DATA.recipes);

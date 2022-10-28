@@ -14,7 +14,6 @@ export default function Details() {
     recipes.filter((recipe) => recipe.id === Number(id))[0] ??
     favorites.filter((favorites) => favorites.id === Number(id))[0];
 
-  console.log(RECIPE);
   const {
     image,
     title,
