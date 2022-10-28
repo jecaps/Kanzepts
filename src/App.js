@@ -12,14 +12,10 @@ import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 
 export default function App() {
-  const [recipes, setRecipes] = useState(loadFromLocal("saved recipes") ?? []);
+  const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
-
-  useEffect(() => {
-    saveToLocal("saved recipes", recipes);
-  }, [recipes]);
 
   useEffect(() => {
     saveToLocal("saved favorites", favorites);
