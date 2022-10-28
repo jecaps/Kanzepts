@@ -16,21 +16,14 @@ export default function Ingredient({ ingredient }) {
 const IngredientContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 80%;
   margin: auto;
-  text-align: right;
-
-  p {
-    margin: 0;
-  }
 `;
 
 const Amount = styled.p`
-  text-align: left;
   width: 40%;
 `;
 
 const IngredientName = styled.p`
-  text-align: left;
-  width: 60%;
+  width: 50%;
 `;

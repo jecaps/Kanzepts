@@ -15,12 +15,6 @@ const InstructionContainer = styled.div`
   display: flex;
   width: 90%;
   margin: auto;
-
-  p {
-    margin: 0;
-    padding: 5px 0;
-    text-align: left;
-  }
 `;
 
 const Number = styled.p`
