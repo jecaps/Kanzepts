@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 
@@ -22,6 +23,7 @@ export default function Card({ recipe }) {
       </CardDetails>
       {/* .replace() is used to remove html tags from the text*/}
       <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+      <NavLink to={`/${id}`}>Go to recipe ➜</NavLink>
     </StyledCard>
   );
 }
