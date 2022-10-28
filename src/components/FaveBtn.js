@@ -2,17 +2,25 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 
-export default function FaveBtn({ id, isFavorite }) {
-  const { recipes, setRecipes } = useContext(RecipeContext);
+export default function FaveBtn({ recipe }) {
+  const { recipes, setRecipes, favorites, setFavorites } =
+    useContext(RecipeContext);
+  const { id, isFavorite } = recipe;
 
   function toggleFavorite() {
     setRecipes(
-      recipes.map((recipe) =>
-        recipe.id === id
-          ? { ...recipe, isFavorite: !recipe.isFavorite }
-          : recipe
+      recipes.map((r) =>
+        r.id === id ? { ...r, isFavorite: !r.isFavorite } : r
       )
     );
+
+    // Checks if the recipe is already in the list of favorites
+    favorites.every((favorite) => favorite.id !== id) && !isFavorite
+      ? setFavorites([
+          ...favorites,
+          { ...recipe, isFavorite: !recipe.isFavorite },
+        ])
+      : setFavorites(favorites.filter((favorite) => favorite.id !== id));
   }
 
   return (
