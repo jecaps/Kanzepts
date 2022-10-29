@@ -10,9 +10,11 @@ import History from "./pages/History";
 import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
+import data from "./data";
 
 export default function App() {
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState(data);
+  // const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
@@ -21,16 +23,16 @@ export default function App() {
     saveToLocal("saved favorites", favorites);
   }, [favorites]);
 
-  useEffect(() => {
-    async function getData() {
-      const RES = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
-      );
-      const DATA = await RES.json();
-      setRecipes(DATA.recipes);
-    }
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     const RES = await fetch(
+  //       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
+  //     );
+  //     const DATA = await RES.json();
+  //     setRecipes(DATA.recipes);
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <RecipeContext.Provider
