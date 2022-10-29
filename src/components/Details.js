@@ -7,13 +7,13 @@ import styled from "styled-components";
 import { nanoid } from "nanoid";
 
 export default function Details() {
-  const { recipes, favorites } = useContext(RecipeContext);
+  const { recipes, favorites, results } = useContext(RecipeContext);
   const { id } = useParams();
 
   const RECIPE =
     recipes.filter((recipe) => recipe.id === Number(id))[0] ??
-    favorites.filter((favorites) => favorites.id === Number(id))[0];
-
+    favorites.filter((favorite) => favorite.id === Number(id))[0] ??
+    results.filter((result) => result.id === Number(id))[0];
   const {
     image,
     title,

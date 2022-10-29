@@ -11,9 +11,12 @@ import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import data from "./data";
+import Search from "./pages/Search";
 
 export default function App() {
   const [recipes, setRecipes] = useState(data);
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState();
   // const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
@@ -36,7 +39,16 @@ export default function App() {
 
   return (
     <RecipeContext.Provider
-      value={{ recipes, setRecipes, favorites, setFavorites }}
+      value={{
+        recipes,
+        setRecipes,
+        favorites,
+        setFavorites,
+        results,
+        setResults,
+        query,
+        setQuery,
+      }}
     >
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -51,6 +63,10 @@ export default function App() {
           <Route path="form" element={<Form />} />
           <Route path="plan" element={<Plan />} />
           <Route path="history" element={<History />} />
+          <Route>
+            <Route path="search" element={<Search />} />
+            <Route path=":id/" element={<Details />} />
+          </Route>
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
