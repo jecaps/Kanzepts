@@ -7,12 +7,12 @@ import styled from "styled-components";
 
 export default function SearchInput() {
   const { toggleSearchInput, setIsShown } = useContext(SearchContext);
-  const { query, setQuery, setResults, queryText } = useContext(RecipeContext);
+  const { query, setQuery, setResults, prevQuery } = useContext(RecipeContext);
   const navigate = useNavigate();
 
   function searchRecipeHandler(e) {
     e.preventDefault();
-    queryText.current = query;
+    prevQuery.current = query;
 
     async function searchQuery() {
       const RES = await fetch(

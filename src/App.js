@@ -19,7 +19,7 @@ export default function App() {
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
-  const queryText = useRef(query);
+  const prevQuery = useRef(query);
 
   useEffect(() => {
     saveToLocal("saved favorites", favorites);
@@ -47,7 +47,7 @@ export default function App() {
         setResults,
         query,
         setQuery,
-        queryText,
+        prevQuery,
       }}
     >
       <Routes>

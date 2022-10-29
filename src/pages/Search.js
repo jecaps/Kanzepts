@@ -5,7 +5,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 export default function Search() {
-  const { results, isLoading, queryText } = useContext(RecipeContext);
+  const { results, isLoading, prevQuery } = useContext(RecipeContext);
 
   return (
     <>
@@ -13,8 +13,8 @@ export default function Search() {
         <>
           <h2>
             {results.length
-              ? `Results from "${queryText.current}"`
-              : `"${queryText.current}" not found`}
+              ? `Results from "${prevQuery.current}"`
+              : `"${prevQuery.current}" not found`}
           </h2>
           <CardsContainer>
             {results.map((result) => (
