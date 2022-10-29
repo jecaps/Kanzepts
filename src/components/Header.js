@@ -37,7 +37,6 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(10px + 2vmin);
   padding: 1rem;
   position: fixed;
   top: 0;
@@ -63,6 +62,7 @@ const StyledHeader = styled.header`
 
   button {
     all: unset;
+    font-size: 0.8rem;
   }
 
   svg {
