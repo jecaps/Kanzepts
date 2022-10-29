@@ -1,16 +1,34 @@
 import FavesPageBtn from "./FavesPageBtn";
+import SearchBtn from "./SearchBtn";
+import SearchInput from "./SearchInput";
 import logo from "../image/kanzepts-logo.png";
 import styled from "styled-components";
+import { SearchContext } from "../context/SearchContext";
+import { useState } from "react";
 
 export default function Header() {
+  const [isShown, setIsShown] = useState(false);
+
+  function toggleSearchInput() {
+    setIsShown(!isShown);
+  }
+
   return (
-    <StyledHeader>
-      <div>
-        <img src={logo} alt="kanzepts logo" />
-        <p>Kanzepts</p>
-      </div>
-      <FavesPageBtn />
-    </StyledHeader>
+    <SearchContext.Provider value={{ toggleSearchInput }}>
+      <StyledHeader>
+        {isShown && <SearchInput />}
+        {!isShown && (
+          <>
+            <FavesPageBtn />
+            <div>
+              <img src={logo} alt="kanzepts logo" />
+              <p>Kanzepts</p>
+            </div>
+            <SearchBtn />
+          </>
+        )}
+      </StyledHeader>
+    </SearchContext.Provider>
   );
 }
 
