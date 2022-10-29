@@ -19,8 +19,8 @@ export default function SearchInput() {
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&tags=${query}&number=6`
       );
       const DATA = await RES.json();
-      console.log(DATA.recipes);
-      setResults(DATA.recipes);
+      console.log(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
+      setResults(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
     }
     searchQuery();
     navigate("/search");

@@ -3,7 +3,7 @@ import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 
 export default function FaveBtn({ recipe }) {
-  const { recipes, setRecipes, favorites, setFavorites } =
+  const { recipes, setRecipes, favorites, setFavorites, results, setResults } =
     useContext(RecipeContext);
   const { id, isFavorite } = recipe;
 
@@ -11,6 +11,14 @@ export default function FaveBtn({ recipe }) {
     setRecipes(
       recipes.map((r) =>
         r.id === id ? { ...r, isFavorite: !r.isFavorite } : r
+      )
+    );
+
+    setResults(
+      results.map((result) =>
+        result.id === id
+          ? { ...result, isFavorite: !result.isFavorite }
+          : result
       )
     );
 

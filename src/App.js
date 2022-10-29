@@ -32,7 +32,7 @@ export default function App() {
   //       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
   //     );
   //     const DATA = await RES.json();
-  //     setRecipes(DATA.recipes);
+  //     setRecipes(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
   //   }
   //   getData();
   // }, []);
