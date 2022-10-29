@@ -10,7 +10,7 @@ export default function SearchInput() {
   const { query, setQuery, setResults } = useContext(RecipeContext);
   const navigate = useNavigate();
 
-  function submitHandler(e) {
+  function searchRecipeHandler(e) {
     e.preventDefault();
     async function searchQuery() {
       const RES = await fetch(
@@ -25,7 +25,7 @@ export default function SearchInput() {
   }
 
   return (
-    <InputContainer type="submit" onSubmit={submitHandler}>
+    <InputContainer type="submit" onSubmit={searchRecipeHandler}>
       <Input
         autoFocus
         type="input"
