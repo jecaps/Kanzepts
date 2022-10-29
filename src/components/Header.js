@@ -7,13 +7,21 @@ import { useState } from "react";
 
 export default function Header() {
   const [isShown, setIsShown] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
 
   function toggleSearchInput() {
     setIsShown(!isShown);
   }
 
   return (
-    <SearchContext.Provider value={{ toggleSearchInput, setIsShown }}>
+    <SearchContext.Provider
+      value={{
+        toggleSearchInput,
+        setIsShown,
+        isLoading,
+        setisLoading,
+      }}
+    >
       <StyledHeader>
         {isShown && <SearchInput />}
         {!isShown && (

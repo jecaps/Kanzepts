@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import { RecipeContext } from "./context/RecipeContext";
 import Layout from "./components/Layout";
@@ -11,16 +11,15 @@ import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import Search from "./pages/Search";
-// import data from "./data";
 
 export default function App() {
-  // const [recipes, setRecipes] = useState(data);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState();
   const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
+  const queryText = useRef(query);
 
   useEffect(() => {
     saveToLocal("saved favorites", favorites);
@@ -48,6 +47,7 @@ export default function App() {
         setResults,
         query,
         setQuery,
+        queryText,
       }}
     >
       <Routes>

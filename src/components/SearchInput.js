@@ -7,11 +7,13 @@ import styled from "styled-components";
 
 export default function SearchInput() {
   const { toggleSearchInput, setIsShown } = useContext(SearchContext);
-  const { query, setQuery, setResults } = useContext(RecipeContext);
+  const { query, setQuery, setResults, queryText } = useContext(RecipeContext);
   const navigate = useNavigate();
 
   function searchRecipeHandler(e) {
     e.preventDefault();
+    queryText.current = query;
+
     async function searchQuery() {
       const RES = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&tags=${query}&number=6`
