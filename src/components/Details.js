@@ -10,10 +10,12 @@ export default function Details() {
   const { recipes, favorites, results } = useContext(RecipeContext);
   const { id } = useParams();
 
+  // Checks from which page is detail page routed from
   const RECIPE =
     recipes.filter((recipe) => recipe.id === Number(id))[0] ??
     favorites.filter((favorite) => favorite.id === Number(id))[0] ??
     results.filter((result) => result.id === Number(id))[0];
+
   const {
     image,
     title,
