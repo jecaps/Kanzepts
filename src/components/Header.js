@@ -13,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <SearchContext.Provider value={{ toggleSearchInput, isShown, setIsShown }}>
+    <SearchContext.Provider value={{ toggleSearchInput, setIsShown }}>
       <StyledHeader>
         {isShown && <SearchInput />}
         {!isShown && (

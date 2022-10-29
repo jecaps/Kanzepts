@@ -4,7 +4,6 @@ import { SearchContext } from "../context/SearchContext";
 import { RecipeContext } from "../context/RecipeContext";
 
 import styled from "styled-components";
-// import data from "../data";
 
 export default function SearchInput() {
   const { toggleSearchInput, setIsShown } = useContext(SearchContext);
@@ -13,13 +12,11 @@ export default function SearchInput() {
 
   function submitHandler(e) {
     e.preventDefault();
-    console.log("fetching data");
     async function searchQuery() {
       const RES = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&tags=${query}&number=6`
       );
       const DATA = await RES.json();
-      console.log(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
       setResults(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
     }
     searchQuery();
@@ -30,6 +27,7 @@ export default function SearchInput() {
   return (
     <InputContainer type="submit" onSubmit={submitHandler}>
       <Input
+        autoFocus
         type="input"
         placeholder="Search Recipes"
         onInput={(e) => setQuery(e.target.value)}

@@ -6,11 +6,11 @@ import styled from "styled-components";
 export default function Search() {
   const { results, query } = useContext(RecipeContext);
 
-  console.log(results);
-
   return (
     <>
-      <h2>Results from "{query}"</h2>
+      <h2>
+        {results.length ? `Results from "${query}"` : `"${query}" not found`}
+      </h2>
       <CardsContainer>
         {results.map((result) => (
           <Card key={result.id} recipe={result} />
