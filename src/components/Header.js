@@ -1,4 +1,3 @@
-import FavesPageBtn from "./FavesPageBtn";
 import SearchBtn from "./SearchBtn";
 import SearchInput from "./SearchInput";
 import logo from "../image/kanzepts-logo.png";
@@ -19,7 +18,6 @@ export default function Header() {
         {isShown && <SearchInput />}
         {!isShown && (
           <>
-            <FavesPageBtn />
             <div>
               <img src={logo} alt="kanzepts logo" />
               <p>Kanzepts</p>
@@ -66,7 +64,6 @@ const StyledHeader = styled.header`
   }
 
   svg {
-    height: 25px;
     width: 25px;
     fill: #0d0d0d;
   }
