@@ -18,7 +18,7 @@ export default function SearchInput() {
       const RES = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${
           process.env.REACT_APP_API_KEY
-        }&tags=${query.toLowerCase()}&number=6`
+        }&tags=${query.toLowerCase()}&number=10`
       );
       const DATA = await RES.json();
       setResults(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
