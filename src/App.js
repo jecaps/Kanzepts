@@ -14,10 +14,11 @@ import Search from "./pages/Search";
 import data from "./data";
 
 export default function App() {
-  // const [results, setResults] = useState([]);
-  const [results, setResults] = useState(data);
+  const [meal, setMeal] = useState({});
   const [query, setQuery] = useState();
-  const [recipes, setRecipes] = useState([]);
+  const [results, setResults] = useState([]);
+  // const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState(data);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
@@ -50,6 +51,8 @@ export default function App() {
         query,
         setQuery,
         prevQuery,
+        meal,
+        setMeal,
       }}
     >
       <Routes>

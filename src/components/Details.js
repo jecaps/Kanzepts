@@ -1,6 +1,7 @@
 import Ingredient from "./Ingredient";
 import Instruction from "./Instruction";
 import GoBack from "./GoBack";
+import AddToPlantBtn from "./AddToPlanBtn";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import { useParams } from "react-router-dom";
@@ -31,6 +32,7 @@ export default function Details() {
   return (
     <DetailsContainer>
       <GoBack />
+      <AddToPlantBtn meal={RECIPE} />
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <BasicDetails>
@@ -56,6 +58,7 @@ export default function Details() {
 }
 
 const DetailsContainer = styled.div`
+  position: relative;
   width: 95%;
   margin: auto;
 
