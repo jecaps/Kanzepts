@@ -1,5 +1,6 @@
 import Ingredient from "./Ingredient";
 import Instruction from "./Instruction";
+import GoBack from "./GoBack";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import { useParams } from "react-router-dom";
@@ -29,6 +30,7 @@ export default function Details() {
 
   return (
     <DetailsContainer>
+      <GoBack />
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <BasicDetails>
