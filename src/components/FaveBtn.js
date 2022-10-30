@@ -42,16 +42,45 @@ export default function FaveBtn({ recipe }) {
 const Button = styled.button`
   all: unset;
   position: absolute;
-  top: -3px;
-  right: -8px;
+  top: -10px;
+  right: 15px;
   border-radius: 8px;
   padding: 0.3rem;
   display: flex;
   justify-content: center;
 
   svg {
-    fill: ${({ isFavorite }) => (isFavorite ? "red" : "#000000")};
+    fill: ${({ isFavorite }) => (isFavorite ? "#FF4A1C" : "#C1CAD6")};
     width: 40px;
     height: 40px;
+  }
+
+  path {
+    stroke: ${({ isFavorite }) => (isFavorite ? "#BA2D0B" : "#474954")};
+    stroke-width: 0.25px;
+  }
+
+  &:active {
+    animation: shake 0.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(5deg);
+    }
+    50% {
+      transform: rotate(0eg);
+    }
+    75% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
   }
 `;

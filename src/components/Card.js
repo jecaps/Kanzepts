@@ -11,31 +11,36 @@ export default function Card({ recipe }) {
   }
 
   return (
-    <StyledCard>
+    <CardContainer>
       <FaveBtn recipe={recipe} />
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <CardDetails>
-        <div>
-          <p>Servings</p>
-          <h4>{servings}</h4>
-        </div>
-        <div>
-          <p>Duration</p>
-          <h4>{readyInMinutes}min</h4>
-        </div>
-      </CardDetails>
-      {/* .replace() is used to remove html tags from the text*/}
-      <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
-      <NavLink onClick={toTop} to={`/${id}`}>
-        Go to recipe ➜
-      </NavLink>
-    </StyledCard>
+      <StyledCard>
+        <img src={image} alt={title} />
+        <h3>{title}</h3>
+        <CardDetails>
+          <div>
+            <p>Servings</p>
+            <h4>{servings}</h4>
+          </div>
+          <div>
+            <p>Duration</p>
+            <h4>{readyInMinutes}min</h4>
+          </div>
+        </CardDetails>
+        {/* .replace() is used to remove html tags from the text*/}
+        <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+        <NavLink onClick={toTop} to={`/${id}`}>
+          Go to recipe ➜
+        </NavLink>
+      </StyledCard>
+    </CardContainer>
   );
 }
 
-const StyledCard = styled.li`
+const CardContainer = styled.div`
   position: relative;
+`;
+
+const StyledCard = styled.li`
   list-style: none;
   margin: 0.75rem auto;
   width: 90%;
