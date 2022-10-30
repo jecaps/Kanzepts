@@ -4,16 +4,18 @@ import { RecipeContext } from "./context/RecipeContext";
 import Layout from "./components/Layout";
 import Details from "./components/Details";
 import Home from "./pages/Home";
-import Form from "./pages/Form";
+import AddMealPlan from "./pages/AddMealPlan";
 import Plan from "./pages/Plan";
 import History from "./pages/History";
 import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import Search from "./pages/Search";
+import data from "./data";
 
 export default function App() {
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
+  const [results, setResults] = useState(data);
   const [query, setQuery] = useState();
   const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
@@ -25,16 +27,16 @@ export default function App() {
     saveToLocal("saved favorites", favorites);
   }, [favorites]);
 
-  useEffect(() => {
-    async function getData() {
-      const RES = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
-      );
-      const DATA = await RES.json();
-      setRecipes(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
-    }
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     const RES = await fetch(
+  //       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
+  //     );
+  //     const DATA = await RES.json();
+  //     setRecipes(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <RecipeContext.Provider
@@ -60,7 +62,7 @@ export default function App() {
             <Route index path="favorites" element={<Favorites />} />
             <Route path=":id/" element={<Details />} />
           </Route>
-          <Route path="form" element={<Form />} />
+          <Route path="form" element={<AddMealPlan />} />
           <Route path="plan" element={<Plan />} />
           <Route path="history" element={<History />} />
           <Route>
