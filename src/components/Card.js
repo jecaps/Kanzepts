@@ -5,6 +5,7 @@ import styled from "styled-components";
 export default function Card({ recipe }) {
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
 
+  // scroll to top when visiting the recipe details page
   function toTop() {
     window.scrollTo({ top: 0, left: 0 });
   }
