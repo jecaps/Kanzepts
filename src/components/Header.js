@@ -1,16 +1,40 @@
-import FavesPageBtn from "./FavesPageBtn";
+import SearchBtn from "./SearchBtn";
+import SearchInput from "./SearchInput";
 import logo from "../image/kanzepts-logo.png";
 import styled from "styled-components";
+import { SearchContext } from "../context/SearchContext";
+import { useState } from "react";
 
 export default function Header() {
+  const [isShown, setIsShown] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
+
+  function toggleSearchInput() {
+    setIsShown(!isShown);
+  }
+
   return (
-    <StyledHeader>
-      <div>
-        <img src={logo} alt="kanzepts logo" />
-        <p>Kanzepts</p>
-      </div>
-      <FavesPageBtn />
-    </StyledHeader>
+    <SearchContext.Provider
+      value={{
+        toggleSearchInput,
+        setIsShown,
+        isLoading,
+        setisLoading,
+      }}
+    >
+      <StyledHeader>
+        {isShown && <SearchInput />}
+        {!isShown && (
+          <>
+            <div>
+              <img src={logo} alt="kanzepts logo" />
+              <p>Kanzepts</p>
+            </div>
+            <SearchBtn />
+          </>
+        )}
+      </StyledHeader>
+    </SearchContext.Provider>
   );
 }
 
@@ -19,7 +43,6 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(10px + 2vmin);
   padding: 1rem;
   position: fixed;
   top: 0;
@@ -45,10 +68,10 @@ const StyledHeader = styled.header`
 
   button {
     all: unset;
+    font-size: 0.8rem;
   }
 
   svg {
-    height: 25px;
     width: 25px;
     fill: #0d0d0d;
   }

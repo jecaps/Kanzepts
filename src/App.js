@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import { RecipeContext } from "./context/RecipeContext";
 import Layout from "./components/Layout";
@@ -10,12 +10,16 @@ import History from "./pages/History";
 import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
+import Search from "./pages/Search";
 
 export default function App() {
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState();
   const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
+  const prevQuery = useRef(query);
 
   useEffect(() => {
     saveToLocal("saved favorites", favorites);
@@ -27,14 +31,24 @@ export default function App() {
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
       );
       const DATA = await RES.json();
-      setRecipes(DATA.recipes);
+      setRecipes(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
     }
     getData();
   }, []);
 
   return (
     <RecipeContext.Provider
-      value={{ recipes, setRecipes, favorites, setFavorites }}
+      value={{
+        recipes,
+        setRecipes,
+        favorites,
+        setFavorites,
+        results,
+        setResults,
+        query,
+        setQuery,
+        prevQuery,
+      }}
     >
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -49,6 +63,10 @@ export default function App() {
           <Route path="form" element={<Form />} />
           <Route path="plan" element={<Plan />} />
           <Route path="history" element={<History />} />
+          <Route>
+            <Route path="search" element={<Search />} />
+            <Route path=":id/" element={<Details />} />
+          </Route>
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

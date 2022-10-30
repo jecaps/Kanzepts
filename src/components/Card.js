@@ -5,6 +5,11 @@ import styled from "styled-components";
 export default function Card({ recipe }) {
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
 
+  // scroll to top when visiting the recipe details page
+  function toTop() {
+    window.scrollTo({ top: 0, left: 0 });
+  }
+
   return (
     <StyledCard>
       <FaveBtn recipe={recipe} />
@@ -22,7 +27,9 @@ export default function Card({ recipe }) {
       </CardDetails>
       {/* .replace() is used to remove html tags from the text*/}
       <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
-      <NavLink to={`/${id}`}>Go to recipe ➜</NavLink>
+      <NavLink onClick={toTop} to={`/${id}`}>
+        Go to recipe ➜
+      </NavLink>
     </StyledCard>
   );
 }
