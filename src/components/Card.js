@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
+import AddToPlanBtn from "./AddToPlanBtn";
 
 export default function Card({ recipe }) {
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
@@ -13,6 +14,7 @@ export default function Card({ recipe }) {
   return (
     <CardContainer>
       <FaveBtn recipe={recipe} />
+      <AddToPlanBtn meal={recipe} />
       <StyledCard>
         <img src={image} alt={title} />
         <h3>{title}</h3>
