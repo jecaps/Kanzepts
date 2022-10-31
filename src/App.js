@@ -14,16 +14,16 @@ import Search from "./pages/Search";
 // import data from "./data";
 
 export default function App() {
-  const [mealSchedule, setMealSchedule] = useState(
-    loadFromLocal("saved schedule") ?? {}
-  );
-  const [meal, setMeal] = useState({});
-  const [query, setQuery] = useState();
-  const [results, setResults] = useState([]);
-  const [recipes, setRecipes] = useState([]);
   // const [recipes, setRecipes] = useState(data);
+  const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
+  );
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState();
+  const [meal, setMeal] = useState({});
+  const [mealSchedule, setMealSchedule] = useState(
+    loadFromLocal("saved schedule") ?? {}
   );
   const prevQuery = useRef(query);
 
