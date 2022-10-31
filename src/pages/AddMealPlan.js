@@ -16,13 +16,9 @@ export default function AddMealPlan() {
     if (!mealSchedule.hasOwnProperty(date)) {
       setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
     } else {
-      if (!mealSchedule[date].hasOwnProperty(slot)) {
-        setMealSchedule({
-          [date]: { ...mealSchedule[date], [slot]: meal },
-        });
-      } else {
-        setMealSchedule({ [date]: { ...mealSchedule[date], [slot]: meal } });
-      }
+      setMealSchedule({
+        [date]: { ...mealSchedule[date], [slot]: meal },
+      });
     }
     navigate("/plan");
     setMeal({});
@@ -34,6 +30,7 @@ export default function AddMealPlan() {
       <Form
         scheduleMealHandler={scheduleMealHandler}
         setSlot={setSlot}
+        date={date}
         setDate={setDate}
       />
       {!Object.keys(meal).length && <p>Please add a recipe!</p>}

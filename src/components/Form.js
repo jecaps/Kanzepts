@@ -2,16 +2,28 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 
-export default function Form({ scheduleMealHandler, setSlot, setDate }) {
-  const { meal } = useContext(RecipeContext);
+export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
+  const { meal, mealSchedule } = useContext(RecipeContext);
 
+  // function that disables date picking in the past dates
   function getDate() {
-    const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
 
     return `${year}-${month}-${day}`;
+  }
+
+  // avoids overwriting meal slot on a date
+  function slotChecker(e) {
+    const selectedSlot = e.target.value;
+    if (mealSchedule[date].hasOwnProperty(selectedSlot)) {
+      e.target.value = "";
+      alert(`${selectedSlot} has already been added for this day`);
+    } else {
+      setSlot(selectedSlot);
+    }
   }
 
   return (
@@ -39,12 +51,7 @@ export default function Form({ scheduleMealHandler, setSlot, setDate }) {
 
         <div>
           <label htmlFor="slots">Slot</label>
-          <select
-            name="slots"
-            id="slots"
-            onChange={(e) => setSlot(e.target.value)}
-            required
-          >
+          <select name="slots" id="slots" onChange={slotChecker} required>
             <option value="" hidden>
               Choose Slot
             </option>
