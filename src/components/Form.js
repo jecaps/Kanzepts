@@ -5,6 +5,15 @@ import { RecipeContext } from "../context/RecipeContext";
 export default function Form({ scheduleMealHandler, setSlot, setDate }) {
   const { meal } = useContext(RecipeContext);
 
+  function getDate() {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+
   return (
     <FormContainer onSubmit={scheduleMealHandler}>
       <fieldset>
@@ -22,6 +31,7 @@ export default function Form({ scheduleMealHandler, setSlot, setDate }) {
           <input
             type="date"
             id="date"
+            min={getDate()}
             onChange={(e) => setDate(e.target.value)}
             required
           />
@@ -64,6 +74,10 @@ const FormContainer = styled.form`
 
   legend {
     text-align: left;
+  }
+
+  h4 {
+    margin: 0;
   }
 
   div {
