@@ -1,14 +1,14 @@
 import Form from "../components/Form";
 import { useContext, useState } from "react";
 import { RecipeContext } from "../context/RecipeContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AddMealPlan() {
   const [slot, setSlot] = useState("");
   const [date, setDate] = useState("");
+  const navigate = useNavigate();
   const { meal, setMeal, mealSchedule, setMealSchedule } =
     useContext(RecipeContext);
-
-  console.log(meal);
 
   function scheduleMealHandler(e) {
     e.preventDefault();
@@ -24,6 +24,7 @@ export default function AddMealPlan() {
         setMealSchedule({ [date]: { ...mealSchedule[date], [slot]: meal } });
       }
     }
+    navigate("/plan");
     setMeal({});
     e.target.reset();
   }
