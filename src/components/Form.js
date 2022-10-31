@@ -30,7 +30,7 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
     <FormContainer onSubmit={scheduleMealHandler}>
       <fieldset>
         <legend>
-          <h3>Plan Your Meal</h3>
+          <h3>Schedule Recipe</h3>
         </legend>
 
         <div>
