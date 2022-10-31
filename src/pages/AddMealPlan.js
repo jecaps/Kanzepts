@@ -13,16 +13,20 @@ export default function AddMealPlan() {
   function scheduleMealHandler(e) {
     e.preventDefault();
 
-    if (!mealSchedule.hasOwnProperty(date)) {
-      setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
+    if (!Object.keys(meal).length) {
+      alert("You haven't added any recipe to assign yet");
     } else {
-      setMealSchedule({
-        [date]: { ...mealSchedule[date], [slot]: meal },
-      });
+      if (!mealSchedule.hasOwnProperty(date)) {
+        setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
+      } else {
+        setMealSchedule({
+          [date]: { ...mealSchedule[date], [slot]: meal },
+        });
+      }
+      navigate("/plan");
+      setMeal({});
+      e.target.reset();
     }
-    navigate("/plan");
-    setMeal({});
-    e.target.reset();
   }
 
   return (
@@ -33,7 +37,6 @@ export default function AddMealPlan() {
         date={date}
         setDate={setDate}
       />
-      {!Object.keys(meal).length && <p>Please add a recipe!</p>}
     </div>
   );
 }
