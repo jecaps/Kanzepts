@@ -14,7 +14,7 @@ export default function AddMealPlan() {
     e.preventDefault();
 
     if (!Object.keys(meal).length) {
-      alert("You haven't added any recipe to assign yet");
+      alert("Please select a recipe you want to schedule.");
     } else {
       if (!mealSchedule.hasOwnProperty(date)) {
         setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
