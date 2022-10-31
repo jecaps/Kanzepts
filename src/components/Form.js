@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
+import GoBack from "./GoBack";
 
 export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
   const { meal, mealSchedule } = useContext(RecipeContext);
@@ -27,44 +28,53 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
   }
 
   return (
-    <FormContainer onSubmit={scheduleMealHandler}>
-      <fieldset>
-        <legend>
-          <h3>Schedule Recipe</h3>
-        </legend>
+    <>
+      <GoBack />
+      <FormContainer onSubmit={scheduleMealHandler}>
+        <fieldset>
+          <legend>
+            <h3>Schedule Recipe</h3>
+          </legend>
 
-        <div>
-          <label htmlFor="recipe">Your Recipe</label>
-          <h4>{meal.title}</h4>
-        </div>
+          <div>
+            <label htmlFor="recipe">Your Recipe</label>
+            <input
+              type="text"
+              name="recipe"
+              id="recipe"
+              defaultValue={meal.title}
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            id="date"
-            min={getDate()}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </div>
+          <div>
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              id="date"
+              min={getDate()}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="slots">Slot</label>
-          <select name="slots" id="slots" onChange={slotChecker} required>
-            <option value="" hidden>
-              Choose Slot
-            </option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            <option value="snacks">Snacks</option>
-          </select>
-        </div>
+          <div>
+            <label htmlFor="slots">Slot</label>
+            <select name="slots" id="slots" onChange={slotChecker} required>
+              <option value="" hidden>
+                Choose Slot
+              </option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snacks">Snacks</option>
+            </select>
+          </div>
 
-        <button type="submit">Confirm</button>
-      </fieldset>
-    </FormContainer>
+          <button type="submit">Confirm</button>
+        </fieldset>
+      </FormContainer>
+    </>
   );
 }
 
@@ -94,7 +104,11 @@ const FormContainer = styled.form`
 
     input,
     select {
-      width: 50%;
+      width: 70%;
     }
+  }
+
+  button {
+    margin-top: 10px;
   }
 `;
