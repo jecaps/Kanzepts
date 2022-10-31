@@ -18,7 +18,7 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
   // avoids overwriting meal slot on a date
   function slotChecker(e) {
     const selectedSlot = e.target.value;
-    if (mealSchedule[date].hasOwnProperty(selectedSlot)) {
+    if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
       e.target.value = "";
       alert(`${selectedSlot} has already been added for this day`);
     } else {
