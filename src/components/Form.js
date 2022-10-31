@@ -6,30 +6,34 @@ export default function Form({ scheduleMealHandler, setSlot, setDate }) {
   const { meal } = useContext(RecipeContext);
 
   return (
-    <form onSubmit={scheduleMealHandler}>
+    <FormContainer onSubmit={scheduleMealHandler}>
       <fieldset>
-        <legend>Plan Your Meal</legend>
+        <legend>
+          <h3>Plan Your Meal</h3>
+        </legend>
 
-        <RecipeContainer>
+        <div>
           <label htmlFor="recipe">Your Recipe</label>
-          <p>{meal.title}</p>
-        </RecipeContainer>
+          <h4>{meal.title}</h4>
+        </div>
 
-        <DateContainer>
+        <div>
           <label htmlFor="date">Date</label>
           <input
             type="date"
             id="date"
             onChange={(e) => setDate(e.target.value)}
+            required
           />
-        </DateContainer>
+        </div>
 
-        <SlotContainer>
+        <div>
           <label htmlFor="slots">Slot</label>
           <select
             name="slots"
             id="slots"
             onChange={(e) => setSlot(e.target.value)}
+            required
           >
             <option value="" hidden>
               Choose Slot
@@ -39,37 +43,37 @@ export default function Form({ scheduleMealHandler, setSlot, setDate }) {
             <option value="dinner">Dinner</option>
             <option value="snacks">Snacks</option>
           </select>
-        </SlotContainer>
+        </div>
 
         <button type="submit">Confirm</button>
       </fieldset>
-    </form>
+    </FormContainer>
   );
 }
 
-const RecipeContainer = styled.div`
+const FormContainer = styled.form`
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
+  width: 90%;
+  margin: auto;
 
-  input {
-    width: 50%;
+  fieldset {
+    border-radius: 0.5rem;
   }
-`;
 
-const DateContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-
-  input {
-    width: 50%;
+  legend {
+    text-align: left;
   }
-`;
 
-const SlotContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  input {
-    width: 50%;
+    input,
+    select {
+      width: 50%;
+    }
   }
 `;
