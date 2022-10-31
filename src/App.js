@@ -14,6 +14,9 @@ import Search from "./pages/Search";
 import data from "./data";
 
 export default function App() {
+  const [mealSchedule, setMealSchedule] = useState(
+    loadFromLocal("saved schedule") ?? {}
+  );
   const [meal, setMeal] = useState({});
   const [query, setQuery] = useState();
   const [results, setResults] = useState([]);
@@ -23,6 +26,12 @@ export default function App() {
     loadFromLocal("saved favorites") ?? []
   );
   const prevQuery = useRef(query);
+
+  console.log(mealSchedule);
+
+  useEffect(() => {
+    saveToLocal("saved schedule", mealSchedule);
+  }, [mealSchedule]);
 
   useEffect(() => {
     saveToLocal("saved favorites", favorites);
@@ -53,6 +62,8 @@ export default function App() {
         prevQuery,
         meal,
         setMeal,
+        mealSchedule,
+        setMealSchedule,
       }}
     >
       <Routes>
