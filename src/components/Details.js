@@ -30,30 +30,32 @@ export default function Details() {
   } = RECIPE;
 
   return (
-    <DetailsContainer>
+    <>
       <GoBack />
-      <AddToPlantBtn meal={RECIPE} />
-      <img src={image} alt={title} />
-      <h2>{title}</h2>
-      <BasicDetails>
-        <p>{readyInMinutes}min.</p>
-        <p>{servings} servings</p>
-        <p>health score {healthScore}</p>
-      </BasicDetails>
-      <Summary>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Summary>
-      <div>
-        <h3>Ingredients</h3>
-        {extendedIngredients.map((ingredient) => (
-          <Ingredient key={nanoid()} ingredient={ingredient} />
-        ))}
-      </div>
-      <div>
-        <h3>Instructions</h3>
-        {analyzedInstructions[0].steps.map((instruction) => (
-          <Instruction key={instruction.number} instruction={instruction} />
-        ))}
-      </div>
-    </DetailsContainer>
+      <DetailsContainer>
+        <AddToPlantBtn meal={RECIPE} />
+        <img src={image} alt={title} />
+        <h2>{title}</h2>
+        <BasicDetails>
+          <p>{readyInMinutes}min.</p>
+          <p>{servings} servings</p>
+          <p>health score {healthScore}</p>
+        </BasicDetails>
+        <Summary>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Summary>
+        <div>
+          <h3>Ingredients</h3>
+          {extendedIngredients.map((ingredient) => (
+            <Ingredient key={nanoid()} ingredient={ingredient} />
+          ))}
+        </div>
+        <div>
+          <h3>Instructions</h3>
+          {analyzedInstructions[0].steps.map((instruction) => (
+            <Instruction key={instruction.number} instruction={instruction} />
+          ))}
+        </div>
+      </DetailsContainer>
+    </>
   );
 }
 
@@ -61,6 +63,17 @@ const DetailsContainer = styled.div`
   position: relative;
   width: 95%;
   margin: auto;
+
+  button {
+    all: unset;
+    position: absolute;
+    right: 5px;
+    top: 2.5px;
+    background-color: #fff;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid gray;
+    border-radius: 8px;
+  }
 
   h2 {
     margin: 0;

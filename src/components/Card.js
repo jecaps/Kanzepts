@@ -14,7 +14,6 @@ export default function Card({ recipe }) {
   return (
     <CardContainer>
       <FaveBtn recipe={recipe} />
-      <AddToPlanBtn meal={recipe} />
       <StyledCard>
         <img src={image} alt={title} />
         <h3>{title}</h3>
@@ -30,9 +29,12 @@ export default function Card({ recipe }) {
         </CardDetails>
         {/* .replace() is used to remove html tags from the text*/}
         <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
-        <NavLink onClick={toTop} to={`/${id}`}>
-          Go to recipe ➜
-        </NavLink>
+        <BottomBtns>
+          <AddToPlanBtn meal={recipe} />
+          <NavLink onClick={toTop} to={`/${id}`}>
+            Go to recipe ➜
+          </NavLink>
+        </BottomBtns>
       </StyledCard>
     </CardContainer>
   );
@@ -49,6 +51,7 @@ const StyledCard = styled.li`
   background-color: #f2f2f2;
   border-radius: 8px;
   overflow: hidden;
+  padding-bottom: 0.5rem;
 
   img {
     width: 100%;
@@ -78,4 +81,20 @@ const Description = styled.p`
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+`;
+
+const BottomBtns = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+
+  a,
+  button {
+    all: unset;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 0.25rem;
+    font-size: 0.8rem;
+    width: 30%;
+  }
 `;
