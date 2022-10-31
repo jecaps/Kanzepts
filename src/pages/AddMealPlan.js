@@ -5,15 +5,27 @@ import { RecipeContext } from "../context/RecipeContext";
 export default function AddMealPlan() {
   const [slot, setSlot] = useState("");
   const [date, setDate] = useState("");
-  const { meal, mealSchedule, setMealSchedule } = useContext(RecipeContext);
+  const { meal, setMeal, mealSchedule, setMealSchedule } =
+    useContext(RecipeContext);
 
-  // function createMealObj() {
-  //   return;
-  // }
+  console.log(meal);
 
   function scheduleMealHandler(e) {
     e.preventDefault();
-    setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
+
+    if (!mealSchedule.hasOwnProperty(date)) {
+      setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
+    } else {
+      if (!mealSchedule[date].hasOwnProperty(slot)) {
+        setMealSchedule({
+          [date]: { ...mealSchedule[date], [slot]: meal },
+        });
+      } else {
+        setMealSchedule({ [date]: { ...mealSchedule[date], [slot]: meal } });
+      }
+    }
+    setMeal({});
+    e.target.reset();
   }
 
   return (
@@ -23,6 +35,7 @@ export default function AddMealPlan() {
         setSlot={setSlot}
         setDate={setDate}
       />
+      {!Object.keys(meal).length && <p>Please add a recipe!</p>}
     </div>
   );
 }
