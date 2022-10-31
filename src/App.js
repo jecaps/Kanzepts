@@ -11,7 +11,7 @@ import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import Search from "./pages/Search";
-import data from "./data";
+// import data from "./data";
 
 export default function App() {
   const [mealSchedule, setMealSchedule] = useState(
@@ -20,14 +20,12 @@ export default function App() {
   const [meal, setMeal] = useState({});
   const [query, setQuery] = useState();
   const [results, setResults] = useState([]);
-  // const [recipes, setRecipes] = useState([]);
-  const [recipes, setRecipes] = useState(data);
+  const [recipes, setRecipes] = useState([]);
+  // const [recipes, setRecipes] = useState(data);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
   const prevQuery = useRef(query);
-
-  console.log(mealSchedule);
 
   useEffect(() => {
     saveToLocal("saved schedule", mealSchedule);
@@ -37,16 +35,16 @@ export default function App() {
     saveToLocal("saved favorites", favorites);
   }, [favorites]);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const RES = await fetch(
-  //       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
-  //     );
-  //     const DATA = await RES.json();
-  //     setRecipes(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
-  //   }
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    async function getData() {
+      const RES = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=15`
+      );
+      const DATA = await RES.json();
+      setRecipes(DATA.recipes.map((data) => ({ ...data, isFavorite: false })));
+    }
+    getData();
+  }, []);
 
   return (
     <RecipeContext.Provider
