@@ -7,9 +7,9 @@ export default function MealSlotCard({ recipe, slot, sched }) {
     <SlotCard>
       <img src={image} alt={title} />
       <div>
-        <h5>{title}</h5>
+        <h3>{title}</h3>
         <p>for</p>
-        <h4>{slot.toUpperCase()}</h4>
+        <h2>{slot.toUpperCase()}</h2>
       </div>
     </SlotCard>
   );
@@ -23,13 +23,13 @@ const SlotCard = styled.div`
   margin: 0.5rem auto;
   overflow: hidden;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 90%;
 
   img {
     width: 100%;
-    filter: blur(3px) grayscale(40%);
-    border-radius: 8px;
+    filter: blur(5px) grayscale(50%);
+    border-radius: 16px;
   }
 
   div {
@@ -40,12 +40,12 @@ const SlotCard = styled.div`
     align-items: center;
     color: #000;
     width: 90%;
-    height: 100%;
 
-    h5,
-    h4,
+    h2,
+    h3,
     p {
       margin: 0;
+      text-align: center;
     }
   }
 `;

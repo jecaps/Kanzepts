@@ -32,8 +32,8 @@ export default function MealDay({ date }) {
 
   return (
     <Section>
-      <h2>{tellDayOfWeek()}</h2>
-      <h3>{date.slice(5)}</h3>
+      <h4>{tellDayOfWeek()}</h4>
+      <h5>{date.slice(5)}</h5>
       <div>
         <div>{el}</div>
       </div>
@@ -45,16 +45,14 @@ const Section = styled.section`
   flex: none;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 5px;
   width: 100%;
   height: 90vh;
   scroll-snap-align: center;
 
-  h2,
-  h3 {
+  h5,
+  h4 {
     margin: 0;
-    text-align: center;
   }
 `;

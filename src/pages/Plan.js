@@ -6,11 +6,13 @@ import styled from "styled-components";
 export default function Plan() {
   const { mealSchedule } = useContext(RecipeContext);
 
-  const planEl = Object.keys(mealSchedule).map((sched) => (
-    <MealDay key={Object.keys(mealSchedule[sched])} date={sched} />
-  ));
-
-  return <Container>{planEl}</Container>;
+  return (
+    <Container>
+      {Object.keys(mealSchedule).map((sched) => (
+        <MealDay key={Object.keys(mealSchedule[sched])} date={sched} />
+      ))}
+    </Container>
+  );
 }
 
 const Container = styled.div`
