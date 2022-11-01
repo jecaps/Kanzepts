@@ -1,7 +1,6 @@
 import Card from "../components/Card";
 import { RecipeContext } from "../context/RecipeContext";
 import { useContext } from "react";
-
 import styled from "styled-components";
 
 export default function Search() {

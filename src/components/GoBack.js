@@ -21,6 +21,10 @@ const Button = styled.button`
   color: #db4200;
   margin: 0;
 
+  p {
+    margin: 0;
+  }
+
   svg {
     width: 15px;
     fill: #db4200;

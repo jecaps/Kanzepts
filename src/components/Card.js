@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
+import AddToPlanBtn from "./AddToPlanBtn";
 
 export default function Card({ recipe }) {
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
@@ -11,37 +12,46 @@ export default function Card({ recipe }) {
   }
 
   return (
-    <StyledCard>
+    <CardContainer>
       <FaveBtn recipe={recipe} />
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <CardDetails>
-        <div>
-          <p>Servings</p>
-          <h4>{servings}</h4>
-        </div>
-        <div>
-          <p>Duration</p>
-          <h4>{readyInMinutes}min</h4>
-        </div>
-      </CardDetails>
-      {/* .replace() is used to remove html tags from the text*/}
-      <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
-      <NavLink onClick={toTop} to={`/${id}`}>
-        Go to recipe ➜
-      </NavLink>
-    </StyledCard>
+      <StyledCard>
+        <img src={image} alt={title} />
+        <h3>{title}</h3>
+        <CardDetails>
+          <div>
+            <p>Servings</p>
+            <h4>{servings}</h4>
+          </div>
+          <div>
+            <p>Duration</p>
+            <h4>{readyInMinutes}min</h4>
+          </div>
+        </CardDetails>
+        {/* .replace() is used to remove html tags from the text*/}
+        <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+        <BottomBtns>
+          <AddToPlanBtn meal={recipe} />
+          <NavLink onClick={toTop} to={`/${id}`}>
+            Go to recipe ➜
+          </NavLink>
+        </BottomBtns>
+      </StyledCard>
+    </CardContainer>
   );
 }
 
-const StyledCard = styled.li`
+const CardContainer = styled.div`
   position: relative;
+`;
+
+const StyledCard = styled.li`
   list-style: none;
   margin: 0.75rem auto;
   width: 90%;
   background-color: #f2f2f2;
   border-radius: 8px;
   overflow: hidden;
+  padding-bottom: 0.5rem;
 
   img {
     width: 100%;
@@ -71,4 +81,20 @@ const Description = styled.p`
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+`;
+
+const BottomBtns = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+
+  a,
+  button {
+    all: unset;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 0.25rem;
+    font-size: 0.8rem;
+    width: 30%;
+  }
 `;

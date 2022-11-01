@@ -4,22 +4,32 @@ import { RecipeContext } from "./context/RecipeContext";
 import Layout from "./components/Layout";
 import Details from "./components/Details";
 import Home from "./pages/Home";
-import Form from "./pages/Form";
+import AddMealPlan from "./pages/AddMealPlan";
 import Plan from "./pages/Plan";
 import History from "./pages/History";
 import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import Search from "./pages/Search";
+// import data from "./data";
 
 export default function App() {
-  const [results, setResults] = useState([]);
-  const [query, setQuery] = useState();
+  // const [recipes, setRecipes] = useState(data);
   const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
   );
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState();
+  const [meal, setMeal] = useState({});
+  const [mealSchedule, setMealSchedule] = useState(
+    loadFromLocal("saved schedule") ?? {}
+  );
   const prevQuery = useRef(query);
+
+  useEffect(() => {
+    saveToLocal("saved schedule", mealSchedule);
+  }, [mealSchedule]);
 
   useEffect(() => {
     saveToLocal("saved favorites", favorites);
@@ -48,6 +58,10 @@ export default function App() {
         query,
         setQuery,
         prevQuery,
+        meal,
+        setMeal,
+        mealSchedule,
+        setMealSchedule,
       }}
     >
       <Routes>
@@ -60,7 +74,7 @@ export default function App() {
             <Route index path="favorites" element={<Favorites />} />
             <Route path=":id/" element={<Details />} />
           </Route>
-          <Route path="form" element={<Form />} />
+          <Route path="form" element={<AddMealPlan />} />
           <Route path="plan" element={<Plan />} />
           <Route path="history" element={<History />} />
           <Route>
