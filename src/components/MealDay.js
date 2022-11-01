@@ -31,19 +31,30 @@ export default function MealDay({ date }) {
   }
 
   return (
-    <Container>
+    <Section>
       <h2>{tellDayOfWeek()}</h2>
       <h3>{date.slice(5)}</h3>
-      <div>{el}</div>
-    </Container>
+      <div>
+        <div>{el}</div>
+      </div>
+    </Section>
   );
 }
 
-const Container = styled.div`
+const Section = styled.section`
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   width: 100%;
+  height: 90vh;
+  scroll-snap-align: center;
 
   h2,
   h3 {
     margin: 0;
+    text-align: center;
   }
 `;
