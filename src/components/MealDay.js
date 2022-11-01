@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import MealSlotCard from "./MealSlotCard";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
@@ -5,10 +6,6 @@ import styled from "styled-components";
 
 export default function MealDay({ date }) {
   const { mealSchedule } = useContext(RecipeContext);
-
-  const el = Object.keys(mealSchedule[date]).map((slot) => (
-    <MealSlotCard recipe={mealSchedule[date][slot]} slot={slot} sched={date} />
-  ));
 
   function tellDayOfWeek() {
     let [year, month, day] = date.split("-");
@@ -35,7 +32,16 @@ export default function MealDay({ date }) {
       <h4>{tellDayOfWeek()}</h4>
       <h5>{date.slice(5)}</h5>
       <div>
-        <div>{el}</div>
+        <div>
+          {Object.keys(mealSchedule[date]).map((slot) => (
+            <MealSlotCard
+              key={nanoid()}
+              recipe={mealSchedule[date][slot]}
+              slot={slot}
+              sched={date}
+            />
+          ))}
+        </div>
       </div>
     </Section>
   );

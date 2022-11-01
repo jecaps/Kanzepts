@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import MealDay from "../components/MealDay";
@@ -9,7 +10,7 @@ export default function Plan() {
   return (
     <Container>
       {Object.keys(mealSchedule).map((sched) => (
-        <MealDay key={Object.keys(mealSchedule[sched])} date={sched} />
+        <MealDay key={nanoid()} date={sched} />
       ))}
     </Container>
   );
