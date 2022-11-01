@@ -1,10 +1,20 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { RecipeContext } from "../context/RecipeContext";
 
-export default function MealSlotCard({ recipe, slot, sched }) {
-  const { title, image } = recipe;
+export default function MealSlotCard({ recipe, slot }) {
+  const { title, image, id } = recipe;
+  const { setRecipeDetail } = useContext(RecipeContext);
+  const navigate = useNavigate();
 
   return (
-    <SlotCard>
+    <SlotCard
+      onClick={() => {
+        navigate(`/${id}`);
+        setRecipeDetail(recipe);
+      }}
+    >
       <img src={image} alt={title} />
       <div>
         <h3>{title}</h3>
