@@ -73,17 +73,11 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path=":id/" element={<Details />} />
           </Route>
-          <Route>
-            <Route index path="favorites" element={<Favorites />} />
-            <Route path=":id/" element={<Details />} />
-          </Route>
+          <Route index path="favorites" element={<Favorites />} />
           <Route path="form" element={<AddMealPlan />} />
           <Route path="plan" element={<Plan />} />
           <Route path="history" element={<History />} />
-          <Route>
-            <Route path="search" element={<Search />} />
-            <Route path=":id/" element={<Details />} />
-          </Route>
+          <Route path="search" element={<Search />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
