@@ -4,19 +4,11 @@ import GoBack from "./GoBack";
 import AddToPlantBtn from "./AddToPlanBtn";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 
 export default function Details() {
-  const { recipes, favorites, results } = useContext(RecipeContext);
-  const { id } = useParams();
-
-  // Checks from which page is detail page routed from
-  const RECIPE =
-    recipes.filter((recipe) => recipe.id === Number(id))[0] ??
-    favorites.filter((favorite) => favorite.id === Number(id))[0] ??
-    results.filter((result) => result.id === Number(id))[0];
+  const { meal } = useContext(RecipeContext);
 
   const {
     image,
@@ -27,13 +19,13 @@ export default function Details() {
     summary,
     healthScore,
     analyzedInstructions,
-  } = RECIPE;
+  } = meal;
 
   return (
     <>
       <GoBack />
       <DetailsContainer>
-        <AddToPlantBtn meal={RECIPE} />
+        <AddToPlantBtn meal={meal} />
         <img src={image} alt={title} />
         <h2>{title}</h2>
         <BasicDetails>

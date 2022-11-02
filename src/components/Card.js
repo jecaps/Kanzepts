@@ -2,13 +2,17 @@ import { NavLink } from "react-router-dom";
 import FaveBtn from "./FaveBtn";
 import styled from "styled-components";
 import AddToPlanBtn from "./AddToPlanBtn";
+import { useContext } from "react";
+import { RecipeContext } from "../context/RecipeContext";
 
 export default function Card({ recipe }) {
+  const { setMeal } = useContext(RecipeContext);
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
 
   // scroll to top when visiting the recipe details page
-  function toTop() {
+  function clickHandler() {
     window.scrollTo({ top: 0, left: 0 });
+    setMeal(recipe);
   }
 
   return (
@@ -31,7 +35,7 @@ export default function Card({ recipe }) {
         <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
         <BottomBtns>
           <AddToPlanBtn meal={recipe} />
-          <NavLink onClick={toTop} to={`/${id}`}>
+          <NavLink onClick={clickHandler} to={`/${id}`}>
             Go to recipe ➜
           </NavLink>
         </BottomBtns>
