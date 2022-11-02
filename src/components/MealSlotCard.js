@@ -16,6 +16,14 @@ export default function MealSlotCard({ recipe, slot, sched }) {
     setMealSchedule(newMealSchedule);
   }
 
+  function rescheduleHandler() {
+    const newMealSchedule = { ...mealSchedule };
+    delete newMealSchedule[sched][slot];
+    setMealSchedule(newMealSchedule);
+    navigate("/form");
+    setMeal(recipe);
+  }
+
   return (
     <SlotCardContainer>
       <div className="card">
@@ -34,7 +42,7 @@ export default function MealSlotCard({ recipe, slot, sched }) {
       </div>
 
       <div className="buttons">
-        <EditBtn />
+        <EditBtn clickHandler={rescheduleHandler} />
         <DeleteBtn clickHandler={deleteSlotHandler} />
       </div>
     </SlotCardContainer>
@@ -82,7 +90,7 @@ const SlotCardContainer = styled.div`
   .buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     position: absolute;
     right: 10px;
     top: 10px;
