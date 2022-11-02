@@ -54,7 +54,7 @@ export default function MealtimeCard({ recipe, slot, sched }) {
   );
 }
 
-const SlotCardContainer = styled.div`
+const SlotCardContainer = styled.section`
   position: relative;
   display: flex;
   width: 90%;
