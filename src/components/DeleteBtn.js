@@ -1,19 +1,9 @@
-import styled from "styled-components";
 import { DeleteIcon } from "./Icons";
 
 export default function DeleteBtn({ clickHandler }) {
   return (
-    <Delete onClick={clickHandler}>
+    <button className="delete" onClick={clickHandler}>
       <DeleteIcon />
-    </Delete>
+    </button>
   );
 }
-
-const Delete = styled.button`
-  all: unset;
-
-  svg {
-    fill: white;
-    width: 15px;
-  }
-`;
