@@ -26,8 +26,6 @@ export default function App() {
   const prevQuery = useRef(query);
   const [recipeDetail, setRecipeDetail] = useState({});
 
-  console.log(mealSchedule);
-
   useEffect(() => {
     saveToLocal("saved schedule", mealSchedule);
   }, [mealSchedule]);

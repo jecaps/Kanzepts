@@ -20,6 +20,7 @@ export default function AddMealPlan() {
         setMealSchedule({ ...mealSchedule, [date]: { [slot]: meal } });
       } else {
         setMealSchedule({
+          ...mealSchedule,
           [date]: { ...mealSchedule[date], [slot]: meal },
         });
       }
