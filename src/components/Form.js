@@ -16,12 +16,12 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
     return `${year}-${month}-${day}`;
   }
 
-  // avoids overwriting meal slot on a date
   function slotChecker(e) {
     const selectedSlot = e.target.value;
     if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
-      e.target.value = "";
-      alert(`${selectedSlot} has already been added for this day`);
+      alert(
+        `${selectedSlot} has already been added for this day. Are you sure you want to overwrite it?`
+      );
     } else {
       setSlot(selectedSlot);
     }
