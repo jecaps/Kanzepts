@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import MealSlotCard from "./MealSlotCard";
+import MealtimeCard from "./MealtimeCard";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
@@ -34,7 +34,7 @@ export default function MealDay({ date }) {
       <div>
         <div>
           {Object.keys(mealSchedule[date]).map((slot) => (
-            <MealSlotCard
+            <MealtimeCard
               key={nanoid()}
               recipe={mealSchedule[date][slot]}
               slot={slot}

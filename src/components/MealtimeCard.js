@@ -5,7 +5,7 @@ import { RecipeContext } from "../context/RecipeContext";
 import DeleteBtn from "./DeleteBtn";
 import EditBtn from "./EditBtn";
 
-export default function MealSlotCard({ recipe, slot, sched }) {
+export default function MealtimeCard({ recipe, slot, sched }) {
   const { title, image, id } = recipe;
   const { mealSchedule, setMealSchedule, setMeal } = useContext(RecipeContext);
   const navigate = useNavigate();
