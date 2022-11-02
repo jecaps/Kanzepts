@@ -12,7 +12,12 @@ export default function MealtimeCard({ recipe, slot, sched }) {
 
   function deleteSlotHandler() {
     const newMealSchedule = { ...mealSchedule };
-    delete newMealSchedule[sched][slot];
+
+    // Checks if a date has only one meal
+    Object.values(newMealSchedule[sched]).length === 1
+      ? delete newMealSchedule[sched]
+      : delete newMealSchedule[sched][slot];
+
     setMealSchedule(newMealSchedule);
   }
 
