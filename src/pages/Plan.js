@@ -9,6 +9,7 @@ export default function Plan() {
 
   return (
     <Container>
+      {!mealSchedule.length && <h2>No meals added to the Meal Plan yet.</h2>}
       {Object.keys(mealSchedule)
         .sort()
         .map((sched) => (
@@ -24,4 +25,11 @@ const Container = styled.div`
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
   display: flex;
+
+  h2 {
+    justify-self: center;
+    align-self: center;
+    padding: 10px;
+    margin: 0;
+  }
 `;
