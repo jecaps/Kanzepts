@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { nanoid } from "nanoid";
 
 export default function Details() {
-  const { recipeDetail } = useContext(RecipeContext);
+  const { meal } = useContext(RecipeContext);
 
   const {
     image,
@@ -19,13 +19,13 @@ export default function Details() {
     summary,
     healthScore,
     analyzedInstructions,
-  } = recipeDetail;
+  } = meal;
 
   return (
     <>
       <GoBack />
       <DetailsContainer>
-        <AddToPlantBtn meal={recipeDetail} />
+        <AddToPlantBtn meal={meal} />
         <img src={image} alt={title} />
         <h2>{title}</h2>
         <BasicDetails>

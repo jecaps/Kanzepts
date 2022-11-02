@@ -6,13 +6,13 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 
 export default function Card({ recipe }) {
-  const { setRecipeDetail } = useContext(RecipeContext);
+  const { setMeal } = useContext(RecipeContext);
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
 
   // scroll to top when visiting the recipe details page
   function clickHandler() {
     window.scrollTo({ top: 0, left: 0 });
-    setRecipeDetail(recipe);
+    setMeal(recipe);
   }
 
   return (
