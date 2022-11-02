@@ -2,11 +2,19 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
+import DeleteBtn from "./DeleteBtn";
 
-export default function MealSlotCard({ recipe, slot }) {
+export default function MealSlotCard({ recipe, slot, sched }) {
   const { title, image, id } = recipe;
-  const { setRecipeDetail } = useContext(RecipeContext);
+  const { mealSchedule, setMealSchedule, setRecipeDetail } =
+    useContext(RecipeContext);
   const navigate = useNavigate();
+
+  function deleteSlotHandler() {
+    const newMealSchedule = { ...mealSchedule };
+    delete newMealSchedule[sched][slot];
+    setMealSchedule(newMealSchedule);
+  }
 
   return (
     <SlotCard
@@ -21,6 +29,7 @@ export default function MealSlotCard({ recipe, slot }) {
         <p>for</p>
         <h2>{slot.toUpperCase()}</h2>
       </div>
+      <DeleteBtn clickHandler={deleteSlotHandler} />
     </SlotCard>
   );
 }
@@ -35,6 +44,12 @@ const SlotCard = styled.div`
   border: 1px solid transparent;
   border-radius: 16px;
   width: 90%;
+
+  button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
 
   img {
     width: 100%;
