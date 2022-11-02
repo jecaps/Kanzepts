@@ -60,5 +60,6 @@ const Section = styled.section`
   h5,
   h4 {
     margin: 0;
+    color: #7d1100;
   }
 `;

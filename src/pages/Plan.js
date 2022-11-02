@@ -9,9 +9,11 @@ export default function Plan() {
 
   return (
     <Container>
-      {Object.keys(mealSchedule).map((sched) => (
-        <MealDay key={nanoid()} date={sched} />
-      ))}
+      {Object.keys(mealSchedule)
+        .sort()
+        .map((sched) => (
+          <MealDay key={nanoid()} date={sched} />
+        ))}
     </Container>
   );
 }

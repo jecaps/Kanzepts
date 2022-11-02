@@ -11,10 +11,8 @@ import Error from "./pages/Error";
 import Favorites from "./pages/Favorites";
 import { saveToLocal, loadFromLocal } from "./lib/localStorage";
 import Search from "./pages/Search";
-// import data from "./data";
 
 export default function App() {
-  // const [recipes, setRecipes] = useState(data);
   const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(
     loadFromLocal("saved favorites") ?? []
@@ -27,6 +25,8 @@ export default function App() {
   );
   const prevQuery = useRef(query);
   const [recipeDetail, setRecipeDetail] = useState({});
+
+  console.log(mealSchedule);
 
   useEffect(() => {
     saveToLocal("saved schedule", mealSchedule);

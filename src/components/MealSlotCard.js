@@ -38,7 +38,7 @@ const SlotCard = styled.div`
 
   img {
     width: 100%;
-    filter: blur(5px) grayscale(50%);
+    filter: blur(3px);
     border-radius: 16px;
   }
 
@@ -48,8 +48,10 @@ const SlotCard = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #000;
-    width: 90%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #eafffd;
+    width: 100%;
+    height: 100%;
 
     h2,
     h3,
