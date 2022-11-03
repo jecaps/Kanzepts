@@ -25,9 +25,8 @@ export default function Form({
   function slotChecker(e) {
     const selectedSlot = e.target.value;
     if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
-      alert(
-        `${selectedSlot} has already been added for this day. Are you sure you want to overwrite it?`
-      );
+      alert(`${selectedSlot} has already been added for this day.`);
+      e.target.value = "";
     } else {
       setSlot(selectedSlot);
     }
