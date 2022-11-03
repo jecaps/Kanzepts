@@ -24,8 +24,6 @@ export default function Form({
     }`;
   }
 
-  console.log(new Date());
-
   function slotChecker(e) {
     const selectedSlot = e.target.value;
     if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
