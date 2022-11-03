@@ -23,6 +23,7 @@ export default function App() {
   const [mealSchedule, setMealSchedule] = useState(
     loadFromLocal("saved schedule") ?? {}
   );
+  const [toReschedule, setToReschedule] = useState({});
   const prevQuery = useRef(query);
 
   useEffect(() => {
@@ -60,6 +61,8 @@ export default function App() {
         setMeal,
         mealSchedule,
         setMealSchedule,
+        toReschedule,
+        setToReschedule,
       }}
     >
       <Routes>
