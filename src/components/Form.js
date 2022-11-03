@@ -19,10 +19,12 @@ export default function Form({
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
 
-    return `${year}-${month}-${day < 10 ? "0" + day : day}`;
+    return `${year}-${month < 10 ? "0" + month : month}-${
+      day < 10 ? "0" + day : day
+    }`;
   }
 
-  console.log(getDate());
+  console.log(new Date());
 
   function slotChecker(e) {
     const selectedSlot = e.target.value;
