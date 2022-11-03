@@ -3,8 +3,14 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import GoBack from "./GoBack";
 
-export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
-  const { meal, mealSchedule } = useContext(RecipeContext);
+export default function Form({
+  rescheduleHandler,
+  scheduleMealHandler,
+  setSlot,
+  date,
+  setDate,
+}) {
+  const { meal, mealSchedule, toReschedule } = useContext(RecipeContext);
 
   // function that disables date picking in the past dates
   function getDate() {
@@ -19,9 +25,8 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
   function slotChecker(e) {
     const selectedSlot = e.target.value;
     if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
-      alert(
-        `${selectedSlot} has already been added for this day. Are you sure you want to overwrite it?`
-      );
+      alert(`${selectedSlot} has already been added for this day.`);
+      e.target.value = "";
     } else {
       setSlot(selectedSlot);
     }
@@ -30,7 +35,13 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
   return (
     <>
       <GoBack />
-      <FormContainer onSubmit={scheduleMealHandler}>
+      <FormContainer
+        onSubmit={
+          Object.keys(toReschedule).length
+            ? rescheduleHandler
+            : scheduleMealHandler
+        }
+      >
         <fieldset>
           <legend>
             <h3>Schedule Recipe</h3>
@@ -71,7 +82,9 @@ export default function Form({ scheduleMealHandler, setSlot, date, setDate }) {
             </select>
           </div>
 
-          <button type="submit">Confirm</button>
+          <button type="submit">
+            {Object.keys(toReschedule).length ? "Reschedule" : "Confirm"}
+          </button>
         </fieldset>
       </FormContainer>
     </>

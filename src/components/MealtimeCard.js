@@ -7,7 +7,8 @@ import EditBtn from "./EditBtn";
 
 export default function MealtimeCard({ recipe, slot, sched }) {
   const { title, image, id } = recipe;
-  const { mealSchedule, setMealSchedule, setMeal } = useContext(RecipeContext);
+  const { mealSchedule, setMealSchedule, setMeal, setToReschedule } =
+    useContext(RecipeContext);
   const navigate = useNavigate();
 
   function deleteSlotHandler() {
@@ -22,11 +23,9 @@ export default function MealtimeCard({ recipe, slot, sched }) {
   }
 
   function rescheduleHandler() {
-    const newMealSchedule = { ...mealSchedule };
-    delete newMealSchedule[sched][slot];
-    setMealSchedule(newMealSchedule);
     navigate("/form");
     setMeal(recipe);
+    setToReschedule({ mealDate: sched, mealtime: slot });
   }
 
   return (
