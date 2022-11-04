@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
+import DefaultImage from "../image/default-placeholder.png";
 
 export default function Details() {
   const { meal } = useContext(RecipeContext);
@@ -26,7 +27,7 @@ export default function Details() {
       <GoBack />
       <DetailsContainer>
         <AddToPlantBtn meal={meal} />
-        <img src={image} alt={title} />
+        <img src={image ?? DefaultImage} alt={title} />
         <h2>{title}</h2>
         <BasicDetails>
           <p>{readyInMinutes}min.</p>

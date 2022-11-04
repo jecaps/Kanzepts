@@ -4,6 +4,7 @@ import styled from "styled-components";
 import AddToPlanBtn from "./AddToPlanBtn";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
+import DefaultImage from "../image/default-placeholder.png";
 
 export default function Card({ recipe }) {
   const { setMeal } = useContext(RecipeContext);
@@ -19,7 +20,7 @@ export default function Card({ recipe }) {
     <CardContainer>
       <FaveBtn recipe={recipe} />
       <StyledCard>
-        <img src={image} alt={title} />
+        <img src={image ?? DefaultImage} alt={title} />
         <h3>{title}</h3>
         <CardDetails>
           <div>
