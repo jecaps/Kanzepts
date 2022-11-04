@@ -1,15 +1,10 @@
 import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
+import { isPast } from "../helpers/Utils";
 
 export default function History() {
   const { mealSchedule } = useContext(RecipeContext);
-
-  function isPast(date) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return new Date(date) < today;
-  }
 
   return (
     <div>
