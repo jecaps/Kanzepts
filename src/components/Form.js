@@ -12,18 +12,6 @@ export default function Form({
 }) {
   const { meal, mealSchedule, toReschedule } = useContext(RecipeContext);
 
-  // function that disables date picking in the past dates
-  function getDate() {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-
-    return `${year}-${month < 10 ? "0" + month : month}-${
-      day < 10 ? "0" + day : day
-    }`;
-  }
-
   function slotChecker(e) {
     const selectedSlot = e.target.value;
     if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
@@ -65,7 +53,7 @@ export default function Form({
             <input
               type="date"
               id="date"
-              min={getDate()}
+              min={new Date().toISOString().split("T")[0]}
               onChange={(e) => setDate(e.target.value)}
               required
             />
