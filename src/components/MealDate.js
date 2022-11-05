@@ -1,37 +1,18 @@
 import MealtimeCard from "./MealtimeCard";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
+import { tellDayOfWeek, tellMonth } from "../helpers/Utils";
 import styled from "styled-components";
 
 export default function MealDate({ date }) {
   const { mealSchedule } = useContext(RecipeContext);
 
-  function tellDayOfWeek() {
-    let [year, month, day] = date.split("-");
-    let convertedDate = new Date(`${month} ${day}, ${year}`);
-    let dayOfWeek = convertedDate.getDay();
-
-    return dayOfWeek === 0
-      ? "SUN"
-      : dayOfWeek === 1
-      ? "MON"
-      : dayOfWeek === 2
-      ? "TUE"
-      : dayOfWeek === 3
-      ? "WED"
-      : dayOfWeek === 4
-      ? "THU"
-      : dayOfWeek === 5
-      ? "FRI"
-      : "SAT";
-  }
-
   const mealDate = mealSchedule[date];
 
   return (
     <Section>
-      <h4>{tellDayOfWeek()}</h4>
-      <h5>{date.slice(5)}</h5>
+      <h4>{tellDayOfWeek(date)}</h4>
+      <h5>{`${date.slice(8)}-${tellMonth(date)}`}</h5>
       <div>
         {mealDate?.breakfast && (
           <MealtimeCard
