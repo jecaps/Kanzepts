@@ -5,16 +5,11 @@ import AddToPlanBtn from "./AddToPlanBtn";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import DefaultImage from "../image/default-placeholder.png";
+import { detailsPageNavigator } from "../helpers/Utils";
 
 export default function Card({ recipe }) {
   const { setMeal } = useContext(RecipeContext);
   const { id, image, title, servings, readyInMinutes, summary } = recipe;
-
-  // scroll to top when visiting the recipe details page
-  function clickHandler() {
-    window.scrollTo({ top: 0, left: 0 });
-    setMeal(recipe);
-  }
 
   return (
     <CardContainer>
@@ -36,7 +31,10 @@ export default function Card({ recipe }) {
         <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
         <BottomBtns>
           <AddToPlanBtn meal={recipe} />
-          <NavLink onClick={clickHandler} to={`/${id}`}>
+          <NavLink
+            onClick={() => detailsPageNavigator(setMeal, recipe)}
+            to={`/${id}`}
+          >
             Go to recipe ➜
           </NavLink>
         </BottomBtns>
