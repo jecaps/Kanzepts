@@ -2,17 +2,16 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import { isPast } from "../helpers/Utils";
-import AddToPlanBtn from "../components/AddToPlanBtn";
-import { NavLink } from "react-router-dom";
-import { detailsPageNavigator } from "../helpers/Utils";
+import HistoryItem from "../components/HistoryItem";
 
 export default function History() {
-  const { mealSchedule, setMeal } = useContext(RecipeContext);
+  const { mealSchedule } = useContext(RecipeContext);
 
   return (
-    <div>
+    <>
       {Object.keys(mealSchedule)
         .filter((mealDate) => isPast(mealDate))
+        .sort()
         .map((mealDate) => {
           const schedule = mealSchedule[mealDate];
 
@@ -20,75 +19,20 @@ export default function History() {
             <ul key={nanoid()}>
               <p>{mealDate}</p>
               {schedule?.breakfast && (
-                <li>
-                  <p>
-                    Breakfast:{" "}
-                    <NavLink
-                      to={`/${schedule.breakfast.id}`}
-                      onClick={() =>
-                        detailsPageNavigator(setMeal, schedule.breakfast)
-                      }
-                    >
-                      {schedule.breakfast.title}
-                    </NavLink>
-                  </p>
-                  <AddToPlanBtn meal={schedule["breakfast"]} />
-                </li>
+                <HistoryItem schedule={schedule} mealtime={"breakfast"} />
               )}
-
               {schedule?.lunch && (
-                <li>
-                  <p>
-                    Lunch:{" "}
-                    <NavLink
-                      to={`/${schedule.lunch.id}`}
-                      onClick={() =>
-                        detailsPageNavigator(setMeal, schedule.lunch)
-                      }
-                    >
-                      {schedule.lunch.title}
-                    </NavLink>
-                  </p>
-                  <AddToPlanBtn meal={schedule.lunch} />
-                </li>
+                <HistoryItem schedule={schedule} mealtime={"lunch"} />
               )}
-
               {schedule?.dinner && (
-                <li>
-                  <p>
-                    Dinner:{" "}
-                    <NavLink
-                      to={`/${schedule.dinner.id}`}
-                      onClick={() =>
-                        detailsPageNavigator(setMeal, schedule.dinner)
-                      }
-                    >
-                      {schedule.dinner.title}
-                    </NavLink>
-                  </p>
-                  <AddToPlanBtn meal={schedule["dinner"]} />
-                </li>
+                <HistoryItem schedule={schedule} mealtime={"dinner"} />
               )}
-
               {schedule?.snacks && (
-                <li>
-                  <p>
-                    Snacks:{" "}
-                    <NavLink
-                      to={`/${schedule.snacks.id}`}
-                      onClick={() =>
-                        detailsPageNavigator(setMeal, schedule.snacks)
-                      }
-                    >
-                      {schedule.snacks.title}
-                    </NavLink>
-                  </p>
-                  <AddToPlanBtn meal={schedule["snacks"]} />
-                </li>
+                <HistoryItem schedule={schedule} mealtime={"snacks"} />
               )}
             </ul>
           );
         })}
-    </div>
+    </>
   );
 }
