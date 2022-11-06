@@ -17,10 +17,8 @@ export function tellDayOfWeek(mealDate) {
 
   return dayOfWeek === today
     ? "TODAY"
-    : dayOfWeek + 1 === today + 1 || (dayOfWeek === 0 && today + 1 === 7)
+    : dayOfWeek === today + 1 || (dayOfWeek === 0 && today + 1 === 7)
     ? "TOMORROW"
-    : dayOfWeek - 1 === today - 1 || (dayOfWeek === 0 && today - 1 === -1)
-    ? "YESTERDAY"
     : dayOfWeek === 0
     ? "SUN"
     : dayOfWeek === 1
