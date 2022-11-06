@@ -10,7 +10,7 @@ export default function History() {
 
   return (
     <>
-      <HistoryTitle>RECIPE HISTORY</HistoryTitle>
+      <HistoryTitle>Recipe History</HistoryTitle>
       {Object.keys(mealSchedule)
         .filter((mealDate) => isPast(mealDate))
         .sort()
@@ -55,7 +55,7 @@ const HistoryTitle = styled.h3`
 `;
 
 const HistoryList = styled.article`
-  padding: 1.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   display: flex;
   justify-content: center;
   gap: 0.75rem;
@@ -64,7 +64,7 @@ const HistoryList = styled.article`
   margin: auto;
 
   :not(:last-child) {
-    border-bottom: 1px solid rgba(255, 156, 8, 0.5);
+    border-bottom: 1px solid #ff9c08;
   }
 
   .history__meal-date {
