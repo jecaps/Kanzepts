@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import MealDate from "../components/MealDate";
 import styled from "styled-components";
+import { isPast } from "../helpers/Utils";
 
 export default function Plan() {
   const { mealSchedule } = useContext(RecipeContext);
@@ -13,6 +14,7 @@ export default function Plan() {
         <h2>No meals added to the Meal Plan yet.</h2>
       )}
       {Object.keys(mealSchedule)
+        .filter((mealDate) => !isPast(mealDate))
         .sort()
         .map((sched) => (
           <MealDate key={nanoid()} date={sched} />

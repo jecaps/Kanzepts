@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import DeleteBtn from "./DeleteBtn";
 import EditBtn from "./EditBtn";
+import DefaultImage from "../image/default-placeholder.png";
 
 export default function MealtimeCard({ recipe, slot, sched }) {
   const { title, image, id } = recipe;
@@ -31,7 +32,7 @@ export default function MealtimeCard({ recipe, slot, sched }) {
   return (
     <SlotCardContainer>
       <div className="card">
-        <img src={image} alt={title} />
+        <img src={image ?? DefaultImage} alt={title} />
         <div
           className="info"
           onClick={() => {

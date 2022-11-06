@@ -35,7 +35,8 @@ export default function AddMealPlan() {
     }
   }
 
-  function rescheduleHandler() {
+  function rescheduleHandler(e) {
+    e.preventDefault();
     const newMealSchedule = { ...mealSchedule };
 
     // Checks if a date has only one meal
@@ -53,6 +54,7 @@ export default function AddMealPlan() {
     navigate("/plan");
     setToReschedule({});
     setMeal({});
+    e.target.reset();
   }
 
   return (
