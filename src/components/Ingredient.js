@@ -5,25 +5,26 @@ export default function Ingredient({ ingredient }) {
 
   return (
     <IngredientContainer>
-      <Amount>
+      <p className="ingredient__amount">
         {amount} {unit}
-      </Amount>
-      <IngredientName>{name}</IngredientName>
+      </p>
+      <p className="ingredient__name">{name}</p>
     </IngredientContainer>
   );
 }
 
-const IngredientContainer = styled.div`
+const IngredientContainer = styled.li`
   display: flex;
   justify-content: space-between;
   width: 80%;
   margin: auto;
-`;
 
-const Amount = styled.p`
-  width: 40%;
-`;
+  .ingredient__amount {
+    width: 40%;
+    font-weight: 500;
+  }
 
-const IngredientName = styled.p`
-  width: 50%;
+  .ingredient__name {
+    width: 50%;
+  }
 `;
