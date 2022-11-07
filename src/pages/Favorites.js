@@ -7,21 +7,24 @@ export default function Favorites() {
   const { favorites } = useContext(RecipeContext);
 
   return (
-    <>
+    <CardsContainer>
       {favorites.length ? (
-        <h2>Your Favorites</h2>
+        <h2 className="favorites__title">Your Favorites</h2>
       ) : (
-        <h2>You do not have favorites</h2>
+        <h2 className="favorites__title">You do not have favorites</h2>
       )}
-      <CardsContainer>
-        {favorites.map((recipe) => (
-          <Card key={recipe.id} recipe={recipe} />
-        ))}
-      </CardsContainer>
-    </>
+      {favorites.map((recipe) => (
+        <Card key={recipe.id} recipe={recipe} />
+      ))}
+    </CardsContainer>
   );
 }
 
 const CardsContainer = styled.ul`
   padding: 0;
+
+  .favorites__title {
+    padding-top: 1rem;
+    color: #691e06;
+  }
 `;
