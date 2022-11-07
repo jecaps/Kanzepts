@@ -50,24 +50,19 @@ const HistoryTitle = styled.h3`
   margin: 0.5rem auto;
   padding: 1rem;
   color: #7d1100;
-  border-bottom: 3px double#7d1100;
-  width: 90%;
 `;
 
 const HistoryList = styled.article`
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0.75rem;
   z-index: 10;
   width: 95%;
   margin: auto;
 
-  :not(:last-child) {
-    border-bottom: 1px solid #ff9c08;
-  }
-
   .history__meal-date {
+    text-align: left;
     font-weight: bold;
     width: 10%;
 
@@ -93,5 +88,12 @@ const HistoryList = styled.article`
     list-style: none;
     gap: 1rem;
     width: 85%;
+    padding-bottom: 1rem;
+  }
+
+  :not(:last-child) {
+    .history__meals {
+      border-bottom: 1px solid #ff9c08;
+    }
   }
 `;

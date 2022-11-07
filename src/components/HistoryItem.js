@@ -38,8 +38,8 @@ const HistoryItemContainer = styled.div`
 
   .add-btn {
     position: absolute;
-    top: 50px;
-    left: -40px;
+    bottom: 1.5rem;
+    left: -3rem;
 
     svg {
       fill: #db4200;
@@ -69,10 +69,11 @@ const HistoryListItem = styled.li`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(252, 252, 252, 0.7);
+    background-color: rgba(254, 254, 227, 0.7);
     color: #d63230;
     width: 100%;
     height: 100%;
+    padding: 0.25rem;
   }
 
   .history__meal {
