@@ -41,23 +41,10 @@ export default function FaveBtn({ recipe }) {
 
 const Button = styled.button`
   all: unset;
-  position: absolute;
-  top: -10px;
-  right: 15px;
-  border-radius: 8px;
-  padding: 0.3rem;
-  display: flex;
-  justify-content: center;
 
   svg {
-    fill: ${({ isFavorite }) => (isFavorite ? "#FF4A1C" : "#C1CAD6")};
-    width: 40px;
-    height: 40px;
-  }
-
-  path {
-    stroke: ${({ isFavorite }) => (isFavorite ? "#BA2D0B" : "#474954")};
-    stroke-width: 0.25px;
+    fill: ${({ isFavorite }) => (isFavorite ? "#faca00" : "#E6E8E6")};
+    width: 1.25rem;
   }
 
   &:active {
