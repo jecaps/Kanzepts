@@ -46,7 +46,7 @@ export default function History() {
   );
 }
 
-const HistoryTitle = styled.h3`
+const HistoryTitle = styled.h2`
   margin: 0.5rem auto;
   padding: 1rem;
   color: #7d1100;
