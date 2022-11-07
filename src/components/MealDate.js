@@ -11,8 +11,8 @@ export default function MealDate({ date }) {
 
   return (
     <Section>
-      <h4>{tellDayOfWeek(date)}</h4>
-      <h5>{`${date.slice(8)}-${tellMonth(date)}`}</h5>
+      <h4 className="meal__day">{tellDayOfWeek(date)}</h4>
+      <h5 className="meal__date">{`${date.slice(8)}-${tellMonth(date)}`}</h5>
       <div>
         {mealDate?.breakfast && (
           <MealtimeCard
@@ -53,9 +53,17 @@ const Section = styled.section`
   height: 90vh;
   scroll-snap-align: center;
 
-  h5,
-  h4 {
-    margin: 0;
+  .meal__day {
+    font-weight: 900;
+    color: #d63230;
+  }
+
+  .meal__date {
     color: #7d1100;
+  }
+
+  .meal__day,
+  .meal__date {
+    margin: 0;
   }
 `;

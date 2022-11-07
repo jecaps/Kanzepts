@@ -7,31 +7,37 @@ import { isPast } from "../helpers/Utils";
 
 export default function Plan() {
   const { mealSchedule } = useContext(RecipeContext);
+  const schedule = Object.keys(mealSchedule).filter(
+    (mealDate) => !isPast(mealDate)
+  );
 
   return (
-    <Container>
-      {!Object.values(mealSchedule).length && (
-        <h2>No meals added to the Meal Plan yet.</h2>
+    <Container schedule={schedule}>
+      {!schedule.length && (
+        <p className="plan__text">No meals added to the Meal Plan yet.</p>
       )}
-      {Object.keys(mealSchedule)
-        .filter((mealDate) => !isPast(mealDate))
-        .sort()
-        .map((sched) => (
-          <MealDate key={nanoid()} date={sched} />
-        ))}
+      {schedule.sort().map((sched) => (
+        <MealDate key={nanoid()} date={sched} />
+      ))}
     </Container>
   );
 }
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
   display: flex;
+  align-items: center;
 
-  h2 {
-    padding: 10px;
+  // centers text when schedule is empty
+  justify-content: ${({ schedule }) => (schedule.length ? "start" : "center")};
+
+  .plan__text {
+    text-align: center;
     margin: 0;
+    font-weight: bold;
+    color: #7d1100;
   }
 `;
