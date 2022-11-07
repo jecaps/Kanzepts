@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import { isPast, tellMonth } from "../helpers/Utils";
 import HistoryItem from "../components/HistoryItem";
+import AddToPlanBtn from "../components/AddToPlanBtn";
 import styled from "styled-components";
 
 export default function History() {
@@ -27,16 +28,28 @@ export default function History() {
 
               <div className="history__meals">
                 {schedule?.breakfast && (
-                  <HistoryItem schedule={schedule} mealtime={"breakfast"} />
+                  <div className="history__meal">
+                    <AddToPlanBtn meal={schedule.breakfast} />
+                    <HistoryItem schedule={schedule} mealtime={"breakfast"} />
+                  </div>
                 )}
                 {schedule?.lunch && (
-                  <HistoryItem schedule={schedule} mealtime={"lunch"} />
+                  <div className="history__meal">
+                    <AddToPlanBtn meal={schedule.lunch} />
+                    <HistoryItem schedule={schedule} mealtime={"lunch"} />
+                  </div>
                 )}
                 {schedule?.dinner && (
-                  <HistoryItem schedule={schedule} mealtime={"dinner"} />
+                  <div className="history__meal">
+                    <AddToPlanBtn meal={schedule.dinner} />
+                    <HistoryItem schedule={schedule} mealtime={"dinner"} />
+                  </div>
                 )}
                 {schedule?.snacks && (
-                  <HistoryItem schedule={schedule} mealtime={"snacks"} />
+                  <div className="history__meal">
+                    <AddToPlanBtn meal={schedule.snacks} />
+                    <HistoryItem schedule={schedule} mealtime={"snacks"} />
+                  </div>
                 )}
               </div>
             </HistoryList>
@@ -47,22 +60,22 @@ export default function History() {
 }
 
 const HistoryTitle = styled.h2`
-  margin: 0.5rem auto;
+  margin: 0;
   padding: 1rem;
   color: #7d1100;
 `;
 
 const HistoryList = styled.article`
+  position: relative;
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
-  z-index: 10;
   width: 95%;
   margin: auto;
 
   .history__meal-date {
-    text-align: left;
+    position: absolute;
     font-weight: bold;
     width: 10%;
 
@@ -87,11 +100,25 @@ const HistoryList = styled.article`
     flex-direction: column;
     list-style: none;
     gap: 1rem;
-    width: 85%;
+    width: 100%;
     padding-bottom: 1rem;
+
+    .history__meal {
+      display: flex;
+      justify-content: space-between;
+
+      .add-btn {
+        width: 10%;
+      }
+
+      svg {
+        fill: #db4200;
+        width: 1.45rem;
+      }
+    }
   }
 
-  :not(:last-child) {
+  :not(:first-child) {
     .history__meals {
       border-bottom: 1px solid #ff9c08;
     }

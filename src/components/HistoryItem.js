@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { detailsPageNavigator } from "../helpers/Utils";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
-import AddToPlanBtn from "./AddToPlanBtn";
 import styled from "styled-components";
 import DefaultImage from "../image/default-placeholder.png";
 
@@ -18,7 +17,7 @@ export default function HistoryItem({ schedule, mealtime }) {
             src={schedule[mealtime].image ?? DefaultImage}
             alt={schedule[mealtime].title}
           />
-          <p className="history__meal">{mealtime} </p>
+          <p className="history__mealtime">{mealtime} </p>
           <NavLink
             className="history__link"
             to={`/${schedule[mealtime].id}`}
@@ -28,24 +27,13 @@ export default function HistoryItem({ schedule, mealtime }) {
           </NavLink>
         </div>
       </HistoryListItem>
-      <AddToPlanBtn meal={schedule[mealtime]} />
     </HistoryItemContainer>
   );
 }
 
 const HistoryItemContainer = styled.div`
   position: relative;
-
-  .add-btn {
-    position: absolute;
-    bottom: 1.5rem;
-    left: -3rem;
-
-    svg {
-      fill: #db4200;
-      width: 1.45rem;
-    }
-  }
+  width: 85%;
 `;
 
 const HistoryListItem = styled.li`
@@ -76,7 +64,7 @@ const HistoryListItem = styled.li`
     padding: 0.25rem;
   }
 
-  .history__meal {
+  .history__mealtime {
     text-transform: capitalize;
     margin: 0;
     font-size: 0.75rem;
