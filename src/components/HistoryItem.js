@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { detailsPageNavigator } from "../helpers/Utils";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
-import AddToPlanBtn from "./AddToPlanBtn";
 import styled from "styled-components";
 import DefaultImage from "../image/default-placeholder.png";
 
@@ -18,7 +17,7 @@ export default function HistoryItem({ schedule, mealtime }) {
             src={schedule[mealtime].image ?? DefaultImage}
             alt={schedule[mealtime].title}
           />
-          <p className="history__meal">{mealtime} </p>
+          <p className="history__mealtime">{mealtime} </p>
           <NavLink
             className="history__link"
             to={`/${schedule[mealtime].id}`}
@@ -28,24 +27,13 @@ export default function HistoryItem({ schedule, mealtime }) {
           </NavLink>
         </div>
       </HistoryListItem>
-      <AddToPlanBtn meal={schedule[mealtime]} />
     </HistoryItemContainer>
   );
 }
 
 const HistoryItemContainer = styled.div`
   position: relative;
-
-  .add-btn {
-    position: absolute;
-    top: 50px;
-    left: -40px;
-
-    svg {
-      fill: #db4200;
-      width: 1.45rem;
-    }
-  }
+  width: 85%;
 `;
 
 const HistoryListItem = styled.li`
@@ -69,13 +57,14 @@ const HistoryListItem = styled.li`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(252, 252, 252, 0.7);
+    background-color: rgba(254, 254, 227, 0.7);
     color: #d63230;
     width: 100%;
     height: 100%;
+    padding: 0.25rem;
   }
 
-  .history__meal {
+  .history__mealtime {
     text-transform: capitalize;
     margin: 0;
     font-size: 0.75rem;

@@ -32,21 +32,21 @@ export default function MealtimeCard({ recipe, slot, sched }) {
   return (
     <SlotCardContainer>
       <div className="card">
-        <img src={image ?? DefaultImage} alt={title} />
+        <img className="card__img" src={image ?? DefaultImage} alt={title} />
         <div
-          className="info"
+          className="card__info"
           onClick={() => {
             navigate(`/${id}`);
             setMeal(recipe);
           }}
         >
-          <h3>{title}</h3>
+          <p className="card__title">{title}</p>
           <p>for</p>
-          <h2>{slot.toUpperCase()}</h2>
+          <p className="card__slot">{slot.toUpperCase()}</p>
         </div>
       </div>
 
-      <div className="buttons">
+      <div className="card__buttons">
         <EditBtn clickHandler={rescheduleHandler} />
         <DeleteBtn clickHandler={deleteSlotHandler} />
       </div>
@@ -57,23 +57,30 @@ export default function MealtimeCard({ recipe, slot, sched }) {
 const SlotCardContainer = styled.section`
   position: relative;
   display: flex;
-  width: 90%;
+  width: 90vw;
+  height: 12rem;
   margin: 0.5rem auto;
-  border-radius: 16px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  box-shadow: 1px 2px 4px #777;
   overflow: hidden;
 
   .card {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 
-    img {
+    .card__img {
+      position: absolute;
       width: 100%;
-      filter: blur(3px);
+      height: 100%;
+      filter: blur(1.5px);
+      z-index: -1;
+      object-fit: cover;
     }
 
-    .info {
-      position: absolute;
+    .card__info {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -83,19 +90,29 @@ const SlotCardContainer = styled.section`
       width: 100%;
       height: 100%;
 
-      h2,
-      h3,
+      .card__title,
+      .card__slot,
       p {
+        color: #fffcdd;
         margin: 0;
         text-align: center;
+      }
+
+      .card__title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        width: 90%;
+      }
+
+      .card__slot {
+        font-weight: bold;
       }
     }
   }
 
-  .buttons {
+  .card__buttons {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     position: absolute;
     right: 10px;
     top: 10px;
@@ -105,8 +122,8 @@ const SlotCardContainer = styled.section`
     }
 
     svg {
-      fill: white;
-      width: 15px;
+      fill: #e6e8e6;
+      width: 1.1rem;
     }
   }
 `;
