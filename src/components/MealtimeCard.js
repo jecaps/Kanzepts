@@ -60,11 +60,12 @@ const SlotCardContainer = styled.section`
   width: 90vw;
   height: 12rem;
   margin: 0.5rem auto;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
   box-shadow: 1px 2px 4px #777;
+  overflow: hidden;
 
   .card {
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
