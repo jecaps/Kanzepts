@@ -118,7 +118,7 @@ const HistoryList = styled.article`
     }
   }
 
-  :not(:first-child) {
+  :not(:last-child) {
     .history__meals {
       border-bottom: 1px solid #ff9c08;
     }
