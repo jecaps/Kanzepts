@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import Card from "../components/Card";
 import styled from "styled-components";
+import Modal from "../components/Modal";
 
 export default function Favorites() {
-  const { favorites } = useContext(RecipeContext);
+  const { favorites, showModal } = useContext(RecipeContext);
 
   return (
     <CardsContainer>
@@ -16,6 +17,8 @@ export default function Favorites() {
       {favorites.map((recipe) => (
         <Card key={recipe.id} recipe={recipe} />
       ))}
+
+      {showModal && <Modal />}
     </CardsContainer>
   );
 }

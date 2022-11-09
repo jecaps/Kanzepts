@@ -24,6 +24,7 @@ export default function App() {
     loadFromLocal("saved schedule") ?? {}
   );
   const [toReschedule, setToReschedule] = useState({});
+  const [showModal, setShowModal] = useState(false);
   const prevQuery = useRef(query);
 
   useEffect(() => {
@@ -63,6 +64,8 @@ export default function App() {
         setMealSchedule,
         toReschedule,
         setToReschedule,
+        showModal,
+        setShowModal,
       }}
     >
       <Routes>

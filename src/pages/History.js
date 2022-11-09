@@ -5,9 +5,10 @@ import { isPast, tellMonth } from "../helpers/Utils";
 import HistoryItem from "../components/HistoryItem";
 import AddToPlanBtn from "../components/AddToPlanBtn";
 import styled from "styled-components";
+import Modal from "../components/Modal";
 
 export default function History() {
-  const { mealSchedule } = useContext(RecipeContext);
+  const { mealSchedule, showModal } = useContext(RecipeContext);
 
   return (
     <>
@@ -55,6 +56,7 @@ export default function History() {
             </HistoryList>
           );
         })}
+      {showModal && <Modal />}
     </>
   );
 }

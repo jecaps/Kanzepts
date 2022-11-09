@@ -8,8 +8,13 @@ import DefaultImage from "../image/default-placeholder.png";
 
 export default function MealtimeCard({ recipe, slot, sched }) {
   const { title, image, id } = recipe;
-  const { mealSchedule, setMealSchedule, setMeal, setToReschedule } =
-    useContext(RecipeContext);
+  const {
+    mealSchedule,
+    setMealSchedule,
+    setMeal,
+    setToReschedule,
+    setShowModal,
+  } = useContext(RecipeContext);
   const navigate = useNavigate();
 
   function deleteSlotHandler() {
@@ -24,9 +29,9 @@ export default function MealtimeCard({ recipe, slot, sched }) {
   }
 
   function rescheduleHandler() {
-    navigate("/form");
     setMeal(recipe);
     setToReschedule({ mealDate: sched, mealtime: slot });
+    setShowModal(true);
   }
 
   return (
