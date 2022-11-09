@@ -9,9 +9,10 @@ import { nanoid } from "nanoid";
 import DefaultImage from "../image/default-placeholder.png";
 import { TimeIcon } from "./Icons";
 import FaveBtn from "./FaveBtn";
+import Modal from "./Modal";
 
 export default function Details() {
-  const { meal } = useContext(RecipeContext);
+  const { meal, showModal } = useContext(RecipeContext);
 
   const {
     image,
@@ -25,59 +26,59 @@ export default function Details() {
   } = meal;
 
   return (
-    <>
-      <DetailsContainer>
-        <GoBack />
-        <img className="details__img" src={image ?? DefaultImage} alt={title} />
-        <h2 className="details__title">{title}</h2>
+    <DetailsContainer>
+      <GoBack />
+      <img className="details__img" src={image ?? DefaultImage} alt={title} />
+      <h2 className="details__title">{title}</h2>
 
-        <div className="details__basic">
-          <div className="details__subdetails">
-            <TimeIcon />
-            <p className="details__subtext">{readyInMinutes}min.</p>
-          </div>
-
-          <div className="details__subdetails">
-            <p className="details__servings">{servings}</p>
-            <p className="details__subtext">Servings</p>
-          </div>
-
-          <div className="details__subdetails">
-            <AddToPlantBtn meal={meal} />
-            <p className="details__subtext">Add To Plan</p>
-          </div>
-
-          <div className="details__subdetails">
-            <FaveBtn recipe={meal} />
-            <p className="details__subtext">
-              Add{isFavorite ? "ed" : ""} To Favorites
-            </p>
-          </div>
+      <div className="details__basic">
+        <div className="details__subdetails">
+          <TimeIcon />
+          <p className="details__subtext">{readyInMinutes}min.</p>
         </div>
 
-        <p className="details__summary">
-          {summary.replace(/<\/?[^>]+(>|$)/g, "")}
-        </p>
-
-        <div className="details__ingredients">
-          <h3 className="details__subtitle">Ingredients</h3>
-          <ul className="details__list">
-            {extendedIngredients.map((ingredient) => (
-              <Ingredient key={nanoid()} ingredient={ingredient} />
-            ))}
-          </ul>
+        <div className="details__subdetails">
+          <p className="details__servings">{servings}</p>
+          <p className="details__subtext">Servings</p>
         </div>
 
-        <div className="details__instructions">
-          <h3 className="details__subtitle">Instructions</h3>
-          <ul className="details__list">
-            {analyzedInstructions[0].steps.map((instruction) => (
-              <Instruction key={instruction.number} instruction={instruction} />
-            ))}
-          </ul>
+        <div className="details__subdetails">
+          <AddToPlantBtn meal={meal} />
+          <p className="details__subtext">Add To Plan</p>
         </div>
-      </DetailsContainer>
-    </>
+
+        <div className="details__subdetails">
+          <FaveBtn recipe={meal} />
+          <p className="details__subtext">
+            Add{isFavorite ? "ed" : ""} To Favorites
+          </p>
+        </div>
+      </div>
+
+      <p className="details__summary">
+        {summary.replace(/<\/?[^>]+(>|$)/g, "")}
+      </p>
+
+      <div className="details__ingredients">
+        <h3 className="details__subtitle">Ingredients</h3>
+        <ul className="details__list">
+          {extendedIngredients.map((ingredient) => (
+            <Ingredient key={nanoid()} ingredient={ingredient} />
+          ))}
+        </ul>
+      </div>
+
+      <div className="details__instructions">
+        <h3 className="details__subtitle">Instructions</h3>
+        <ul className="details__list">
+          {analyzedInstructions[0].steps.map((instruction) => (
+            <Instruction key={instruction.number} instruction={instruction} />
+          ))}
+        </ul>
+      </div>
+
+      {showModal && <Modal />}
+    </DetailsContainer>
   );
 }
 

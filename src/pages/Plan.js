@@ -4,9 +4,10 @@ import { RecipeContext } from "../context/RecipeContext";
 import MealDate from "../components/MealDate";
 import styled from "styled-components";
 import { isPast } from "../helpers/Utils";
+import Modal from "../components/Modal";
 
 export default function Plan() {
-  const { mealSchedule } = useContext(RecipeContext);
+  const { mealSchedule, showModal } = useContext(RecipeContext);
   const schedule = Object.keys(mealSchedule).filter(
     (mealDate) => !isPast(mealDate)
   );
@@ -19,6 +20,8 @@ export default function Plan() {
       {schedule.sort().map((sched) => (
         <MealDate key={nanoid()} date={sched} />
       ))}
+
+      {showModal && <Modal />}
     </Container>
   );
 }

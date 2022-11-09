@@ -1,16 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import { AddCalendarIcon } from "./Icons";
 import styled from "styled-components";
 
 export default function AddToPlanBtn({ meal }) {
-  const { setMeal } = useContext(RecipeContext);
-  const navigate = useNavigate();
+  const { setMeal, setShowModal } = useContext(RecipeContext);
 
   function addMealToPlan() {
     setMeal(meal);
-    navigate("/form");
+    setShowModal(true);
   }
   return (
     <Button className="add-btn" onClick={addMealToPlan}>
