@@ -10,27 +10,25 @@ export default function Search() {
     useContext(RecipeContext);
 
   return (
-    <>
-      <CardsContainer>
-        <GoBack />
-        {!isLoading ? (
-          <>
-            <h2 className="search__title">
-              {results.length
-                ? `Results from "${prevQuery.current}"`
-                : `"${prevQuery.current}" not found`}
-            </h2>
-            {results.map((result) => (
-              <Card key={result.id} recipe={result} />
-            ))}
-          </>
-        ) : (
-          <h2>Loading...</h2>
-        )}
+    <CardsContainer>
+      <GoBack />
+      {!isLoading ? (
+        <>
+          <h2 className="search__title">
+            {results.length
+              ? `Results from "${prevQuery.current}"`
+              : `"${prevQuery.current}" not found`}
+          </h2>
+          {results.map((result) => (
+            <Card key={result.id} recipe={result} />
+          ))}
+        </>
+      ) : (
+        <h2>Loading...</h2>
+      )}
 
-        {showModal && <Modal />}
-      </CardsContainer>
-    </>
+      {showModal && <Modal />}
+    </CardsContainer>
   );
 }
 
