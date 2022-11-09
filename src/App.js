@@ -4,7 +4,6 @@ import { RecipeContext } from "./context/RecipeContext";
 import Layout from "./components/Layout";
 import Details from "./components/Details";
 import Home from "./pages/Home";
-import AddMealPlan from "./pages/AddMealPlan";
 import Plan from "./pages/Plan";
 import History from "./pages/History";
 import Error from "./pages/Error";
@@ -75,7 +74,6 @@ export default function App() {
             <Route path=":id/" element={<Details />} />
           </Route>
           <Route index path="favorites" element={<Favorites />} />
-          <Route path="form" element={<AddMealPlan />} />
           <Route path="plan" element={<Plan />} />
           <Route path="history" element={<History />} />
           <Route path="search" element={<Search />} />

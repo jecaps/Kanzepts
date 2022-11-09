@@ -1,11 +1,5 @@
 import { NavLink } from "react-router-dom";
-import {
-  HomeIcon,
-  FavoritesIcon,
-  FormIcon,
-  PlanIcon,
-  HistoryIcon,
-} from "./Icons";
+import { HomeIcon, FavoritesIcon, PlanIcon, HistoryIcon } from "./Icons";
 import styled from "styled-components";
 
 export default function Nav() {
@@ -16,9 +10,6 @@ export default function Nav() {
       </NavLink>
       <NavLink to="favorites">
         <FavoritesIcon />
-      </NavLink>
-      <NavLink to="/form">
-        <FormIcon />
       </NavLink>
       <NavLink to="/plan">
         <PlanIcon />
