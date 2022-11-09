@@ -27,12 +27,12 @@ export default function Modal() {
 
   function slotChecker(e) {
     const selectedSlot = e.target.value;
-    // if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
-    //   alert(`${selectedSlot} has already been added for this day.`);
-    //   e.target.value = "";
-    // } else {
-    setSlot(selectedSlot);
-    // }
+    if (date in mealSchedule && selectedSlot in mealSchedule[date]) {
+      alert(`${selectedSlot} has already been added for this day.`);
+      e.target.value = "";
+    } else {
+      setSlot(selectedSlot);
+    }
   }
 
   function scheduleMealHandler(e) {
@@ -132,9 +132,7 @@ export default function Modal() {
 
         <div className="form__buttons">
           <button className="form__button confirm" type="submit">
-            {/* {Object.keys(toReschedule).length ? "Reschedule" :  */}
-            Confirm
-            {/* } */}
+            {location.pathname === "/plan" ? "Reschedule" : "Confirm"}
           </button>
           <button className="form__button cancel" onClick={toggleModal}>
             Cancel
