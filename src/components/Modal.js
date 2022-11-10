@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import DateInput from "./DateInput";
 
 export default function Modal() {
   const {
@@ -95,19 +96,7 @@ export default function Modal() {
           <p className="form__recipe">{meal.title}</p>
         </div>
 
-        <div className="form__input-container">
-          <label className="form__label" htmlFor="date">
-            Date
-          </label>
-          <input
-            className="form__input"
-            type="date"
-            id="date"
-            min={new Date().toISOString().split("T")[0]}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </div>
+        <DateInput setDate={setDate} />
 
         <div className="form__input-container">
           <label className="form__label" htmlFor="slots">
