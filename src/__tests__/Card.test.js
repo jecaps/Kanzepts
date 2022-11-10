@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import data from "../data";
-import Card from "./Card";
+import Card from "../components/Card";
 
 const recipe = data[0];
 
