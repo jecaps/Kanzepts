@@ -22,37 +22,37 @@ export default function History() {
 
           return (
             <HistoryList key={nanoid()}>
-              <div className="history__meal-date">
-                <p className="history__month">{tellMonth(mealDate)}</p>
-                <p className="history__date">{mealDate.slice(8)}</p>
-              </div>
+              <MealDate>
+                <Month>{tellMonth(mealDate)}</Month>
+                <Date>{mealDate.slice(8)}</Date>
+              </MealDate>
 
-              <div className="history__meals">
+              <MealsList>
                 {schedule?.breakfast && (
-                  <div className="history__meal">
+                  <Meal>
                     <AddToPlanBtn meal={schedule.breakfast} />
                     <HistoryItem schedule={schedule} mealtime={"breakfast"} />
-                  </div>
+                  </Meal>
                 )}
                 {schedule?.lunch && (
-                  <div className="history__meal">
+                  <Meal>
                     <AddToPlanBtn meal={schedule.lunch} />
                     <HistoryItem schedule={schedule} mealtime={"lunch"} />
-                  </div>
+                  </Meal>
                 )}
                 {schedule?.dinner && (
-                  <div className="history__meal">
+                  <Meal>
                     <AddToPlanBtn meal={schedule.dinner} />
                     <HistoryItem schedule={schedule} mealtime={"dinner"} />
-                  </div>
+                  </Meal>
                 )}
                 {schedule?.snacks && (
-                  <div className="history__meal">
+                  <Meal>
                     <AddToPlanBtn meal={schedule.snacks} />
                     <HistoryItem schedule={schedule} mealtime={"snacks"} />
-                  </div>
+                  </Meal>
                 )}
-              </div>
+              </MealsList>
             </HistoryList>
           );
         })}
@@ -76,53 +76,52 @@ const HistoryList = styled.article`
   width: 95%;
   margin: auto;
 
-  .history__meal-date {
-    position: absolute;
-    font-weight: bold;
-    width: 10%;
-
-    .history__month {
-      font-size: 0.6rem;
-      color: #7d1100;
-    }
-
-    .history__date {
-      font-size: 1.4rem;
-      color: #ff9c08;
-    }
-
-    .history__month,
-    .history__date {
-      margin: 0;
-    }
-  }
-
-  .history__meals {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    gap: 1rem;
-    width: 100%;
-    padding-bottom: 1rem;
-
-    .history__meal {
-      display: flex;
-      justify-content: space-between;
-
-      .add-btn {
-        width: 10%;
-      }
-
-      svg {
-        fill: #db4200;
-        width: 1.45rem;
-      }
-    }
-  }
-
   :not(:last-child) {
-    .history__meals {
+    ul {
       border-bottom: 1px solid #ff9c08;
     }
+  }
+`;
+
+const MealDate = styled.div`
+  position: absolute;
+  font-weight: bold;
+  width: 10%;
+`;
+
+const Month = styled.p`
+  margin: 0;
+  font-size: 0.6rem;
+  color: #7d1100;
+`;
+
+const Date = styled.p`
+  margin: 0;
+  font-size: 1.4rem;
+  color: #ff9c08;
+`;
+
+const MealsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 1rem;
+  width: 100%;
+  padding-left: 0;
+  padding-bottom: 1rem;
+  list-style: none;
+`;
+
+const Meal = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    width: 10%;
+  }
+
+  svg {
+    fill: #db4200;
+    width: 1.45rem;
   }
 `;
