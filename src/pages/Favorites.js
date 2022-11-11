@@ -10,9 +10,9 @@ export default function Favorites() {
   return (
     <CardsContainer>
       {favorites.length ? (
-        <h2 className="favorites__title">Your Favorites</h2>
+        <h2>Your Favorites</h2>
       ) : (
-        <h2 className="favorites__title">You do not have favorites</h2>
+        <h2>You do not have favorites</h2>
       )}
       {favorites.map((recipe) => (
         <Card key={recipe.id} recipe={recipe} />
@@ -26,7 +26,7 @@ export default function Favorites() {
 const CardsContainer = styled.ul`
   padding: 0;
 
-  .favorites__title {
+  h2 {
     padding-top: 1rem;
     color: #691e06;
   }
