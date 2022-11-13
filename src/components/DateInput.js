@@ -1,15 +1,15 @@
 export default function DateInput({ setDate }) {
   return (
     <div>
+      <input type="date" id="date" onfocus="(this.type='date')" required />
       <input
-        className="form__input"
-        type="date"
-        id="date"
-        min={new Date().toISOString().split("T")[0]}
+        min={new Date().toISOString().substring(0, 10)}
         onChange={(e) => setDate(e.target.value)}
-        onfocus="(this.type='date')"
-        required
-      />
+        placeholder="Type Date"
+        type="text"
+        onfocus="(this.type = 'date')"
+        id="date"
+      ></input>
     </div>
   );
 }
