@@ -196,12 +196,12 @@ const Image = styled.div`
 const Input = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   div {
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: 48%;
   }
 
   input,
@@ -215,7 +215,22 @@ const Input = styled.div`
     border-radius: 4px;
   }
 
+  input[type="date"]:before {
+    color: rgba(53, 53, 53, 0.44);
+    content: attr(placeholder);
+  }
+
   input[type="date"].full:before {
+    color: black;
+    content: "" !important;
+  }
+
+  input[type="time"]:before {
+    color: rgba(53, 53, 53, 0.44);
+    content: attr(placeholder);
+  }
+
+  input[type="time"].full:before {
     color: black;
     content: "" !important;
   }
