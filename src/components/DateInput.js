@@ -1,9 +1,6 @@
 export default function DateInput({ setDate }) {
   return (
-    <div className="form__input-container">
-      <label className="form__label" htmlFor="date">
-        Date
-      </label>
+    <div>
       <input
         className="form__input"
         type="date"
