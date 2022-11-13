@@ -7,6 +7,7 @@ export default function DateInput({ setDate }) {
         id="date"
         min={new Date().toISOString().split("T")[0]}
         onChange={(e) => setDate(e.target.value)}
+        placeholder="DD/MM/YYYY"
         required
       />
     </div>
