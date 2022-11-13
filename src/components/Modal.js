@@ -98,6 +98,7 @@ export default function Modal() {
           <DateInput setDate={setDate} />
 
           <div>
+            <label htmlFor="slots">Slot</label>
             <select name="slots" id="slots" onChange={slotChecker} required>
               <option value="" hidden>
                 Choose Slot
@@ -178,7 +179,6 @@ const Title = styled.h3`
 `;
 
 const Recipe = styled.h4`
-  font-family: "Baloo Chettan 2", cursive;
   margin: 0;
 `;
 
@@ -196,17 +196,16 @@ const Image = styled.div`
 const Input = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   div {
     display: flex;
     flex-direction: column;
-    width: 48%;
+    width: 8rem;
   }
 
   input,
   select {
-    font-family: "Baloo Chettan 2", cursive;
     padding: 0.125rem;
     font-size: 1rem;
     color: #333;
@@ -215,31 +214,13 @@ const Input = styled.div`
     border-radius: 4px;
   }
 
-  input[type="date"]:before {
-    color: rgba(53, 53, 53, 0.44);
-    content: attr(placeholder);
-  }
-
-  input[type="date"].full:before {
-    color: black;
-    content: "" !important;
-  }
-
-  input[type="time"]:before {
-    color: rgba(53, 53, 53, 0.44);
-    content: attr(placeholder);
-  }
-
-  input[type="time"].full:before {
-    color: black;
-    content: "" !important;
+  label {
   }
 `;
 
 const Buttons = styled.div`
   display: flex;
   justify-content: space-evenly;
-  font-family: "Baloo Chettan 2", cursive;
 
   button {
     all: unset;
@@ -251,7 +232,7 @@ const Buttons = styled.div`
   }
 
   .confirm {
-    background: #50ba6e;
+    background: #3cb85e;
     border-radius: 24px;
     color: #ffffff;
   }
