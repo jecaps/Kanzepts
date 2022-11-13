@@ -5,7 +5,7 @@ export default function DateInput({ setDate }) {
         min={new Date().toISOString().substring(0, 10)}
         onChange={(e) => setDate(e.target.value)}
         placeholder="dd.mm.yyyy"
-        type="text"
+        type="date"
         onfocus="(this.type = 'date')"
         id="date"
         required
