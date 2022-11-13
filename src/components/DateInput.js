@@ -6,7 +6,6 @@ export default function DateInput({ setDate }) {
         onChange={(e) => setDate(e.target.value)}
         placeholder="dd.mm.yyyy"
         type="date"
-        onfocus="(this.type = 'date')"
         id="date"
         required
       ></input>

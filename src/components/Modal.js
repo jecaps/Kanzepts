@@ -215,9 +215,9 @@ const Input = styled.div`
     border-radius: 4px;
   }
 
-  label {
-    font-family: "Baloo Chettan 2", cursive;
-    font-weight: 600;
+  input[type="date"].full:before {
+    color: black;
+    content: "" !important;
   }
 `;
 
