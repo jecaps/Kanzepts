@@ -25,6 +25,7 @@ export default function Favorites() {
 
 const CardsContainer = styled.ul`
   padding: 0;
+  padding-bottom: 0.5rem;
 
   h2 {
     padding-top: 1rem;
