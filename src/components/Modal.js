@@ -176,6 +176,7 @@ const Title = styled.h3`
   font-size: 20px;
   line-height: 25px;
   text-align: center;
+  font-family: "dosis", sans-serif;
 `;
 
 const Recipe = styled.h4`
@@ -215,6 +216,8 @@ const Input = styled.div`
   }
 
   label {
+    text-align: left;
+    font-size: 0.75rem;
   }
 `;
 
@@ -224,7 +227,7 @@ const Buttons = styled.div`
 
   button {
     all: unset;
-    width: 45%;
+    width: 45% !important;
     border-radius: 0.25rem;
     font-weight: 600;
     padding: 0.5rem 0;
