@@ -120,7 +120,7 @@ const Buttons = styled.div`
   }
 `;
 
-const StyledCard = styled.li`
+const StyledCard = styled.div`
   list-style: none;
   margin: 1rem auto;
   width: 85%;
