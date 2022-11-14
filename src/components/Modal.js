@@ -173,7 +173,6 @@ const Title = styled.h3`
   font-weight: 700;
   font-size: 20px;
   text-align: center;
-  font-family: "dosis", sans-serif;
   letter-spacing: 0.1rem;
 `;
 

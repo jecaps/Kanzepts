@@ -36,7 +36,7 @@ export default function MealtimeCard({ recipe, slot, sched }) {
 
   return (
     <SlotCardContainer>
-      <div className="card">
+      <Card>
         <img className="card__img" src={image ?? DefaultImage} alt={title} />
         <div
           className="card__info"
@@ -49,7 +49,7 @@ export default function MealtimeCard({ recipe, slot, sched }) {
           <p>for</p>
           <p className="card__slot">{slot.toUpperCase()}</p>
         </div>
-      </div>
+      </Card>
 
       <div className="card__buttons">
         <EditBtn clickHandler={rescheduleHandler} />
@@ -65,59 +65,13 @@ const SlotCardContainer = styled.section`
   width: 90vw;
   height: 12rem;
   margin: 0.5rem auto;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
-  box-shadow: 1px 2px 4px #777;
   overflow: hidden;
-
-  .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-
-    .card__img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      filter: blur(1.5px);
-      z-index: -1;
-      object-fit: cover;
-    }
-
-    .card__info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #eafffd;
-      width: 100%;
-      height: 100%;
-
-      .card__title,
-      .card__slot,
-      p {
-        color: #fffcdd;
-        margin: 0;
-        text-align: center;
-      }
-
-      .card__title {
-        font-size: 1.25rem;
-        font-weight: bold;
-        width: 90%;
-      }
-
-      .card__slot {
-        font-weight: bold;
-      }
-    }
-  }
 
   .card__buttons {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     position: absolute;
     right: 10px;
     top: 10px;
@@ -127,8 +81,52 @@ const SlotCardContainer = styled.section`
     }
 
     svg {
-      fill: #e6e8e6;
-      width: 1.1rem;
+      fill: #eee;
+      width: 1.5rem;
+    }
+  }
+`;
+
+const Card = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .card__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+
+  .card__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #eafffd;
+    width: 100%;
+    height: 100%;
+
+    .card__title,
+    .card__slot,
+    p {
+      color: #eee;
+      margin: 0;
+      text-align: center;
+    }
+
+    .card__title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      width: 90%;
+    }
+
+    .card__slot {
+      font-weight: bold;
     }
   }
 `;

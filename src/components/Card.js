@@ -133,6 +133,7 @@ const StyledCard = styled.div`
     0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
   border-radius: 1.5rem;
   overflow: hidden;
+  padding-bottom: 0.5rem;
   color: #273043;
 
   a {
