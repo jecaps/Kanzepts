@@ -111,9 +111,7 @@ export default function Modal() {
           </div>
         </Input>
 
-        <Image image={meal.image ?? DefaulImage}>
-          <div></div>
-        </Image>
+        <Image src={meal.image ?? DefaulImage} alt={meal.title} />
 
         <Buttons>
           <button className="cancel" onClick={toggleModal}>
@@ -174,24 +172,22 @@ const Title = styled.h3`
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
-  line-height: 25px;
   text-align: center;
   font-family: "dosis", sans-serif;
+  letter-spacing: 0.1rem;
 `;
 
 const Recipe = styled.h4`
   margin: 0;
 `;
 
-const Image = styled.div`
-  div {
-    background-image: url(${({ image }) => image});
-    border-radius: 0.5rem;
-    background-position: center;
-    width: 15rem;
-    height: 7rem;
-    margin: auto;
-  }
+const Image = styled.img`
+  border: 1px solid #eee;
+  border-radius: 0.5rem;
+  background-position: center;
+  width: 15rem;
+  height: 7rem;
+  margin: 0 auto;
 `;
 
 const Input = styled.div`
@@ -216,7 +212,6 @@ const Input = styled.div`
   }
 
   label {
-    text-align: left;
     font-size: 0.75rem;
   }
 `;
