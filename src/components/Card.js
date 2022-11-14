@@ -27,7 +27,7 @@ export default function Card({ recipe }) {
     dishTypes,
     cuisines,
     aggregateLikes,
-    summary,
+    // summary,
   } = recipe;
 
   return (
@@ -87,7 +87,7 @@ export default function Card({ recipe }) {
           <Title>{title}</Title>
 
           {/* .replace() is used to remove html tags from the text*/}
-          <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description>
+          {/* <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description> */}
         </NavLink>
       </StyledCard>
     </CardContainer>
@@ -107,7 +107,7 @@ const Buttons = styled.div`
   gap: 5px;
   position: absolute;
   top: 0.35rem;
-  right: 2.25rem;
+  right: 2.75rem;
   background-color: rgba(0 0 0 / 0.6);
   border-radius: 0.75rem;
   padding: 0.25rem;
@@ -123,7 +123,7 @@ const Buttons = styled.div`
 const StyledCard = styled.div`
   list-style: none;
   margin: 1rem auto;
-  width: 85%;
+  width: 80%;
   background-color: #fff;
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
     0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
@@ -192,19 +192,20 @@ const DurationAndLikes = styled.div`
 
 const Title = styled.h3`
   margin: 0;
-  padding: 0.75rem 1rem 0 1rem;
+  padding: 1rem;
   font-family: "dosis", sans-serif;
+  font-size: 1.25rem;
 `;
 
-const Description = styled.p`
-  text-align: left;
-  line-height: 100%;
-  margin: 0;
-  padding: 0.125rem 1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  font-size: 0.9rem;
-  overflow: hidden;
-  color: #555;
-`;
+// const Description = styled.p`
+//   text-align: left;
+//   line-height: 100%;
+//   margin: 0;
+//   padding: 0.125rem 1rem;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 2;
+//   -webkit-box-orient: vertical;
+//   font-size: 0.9rem;
+//   overflow: hidden;
+//   color: #555;
+// `;
