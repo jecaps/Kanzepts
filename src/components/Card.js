@@ -107,7 +107,7 @@ const Buttons = styled.div`
   gap: 5px;
   position: absolute;
   top: 0.35rem;
-  right: 2.75rem;
+  right: 3rem;
   background-color: rgba(0 0 0 / 0.6);
   border-radius: 0.75rem;
   padding: 0.25rem;
@@ -133,7 +133,6 @@ const StyledCard = styled.div`
     0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
   border-radius: 1.5rem;
   overflow: hidden;
-  padding-bottom: 0.5rem;
   color: #273043;
 
   a {
