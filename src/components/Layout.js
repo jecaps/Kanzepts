@@ -21,5 +21,4 @@ const Container = styled.div`
 
 const Main = styled.main`
   margin: 4rem 0;
-  background-color: #eee;
 `;
