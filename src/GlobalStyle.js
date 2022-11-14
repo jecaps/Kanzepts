@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
-    font-family: 'Baloo Chettan 2', cursive;
+    font-family: 'dosis', cursive;
   }
 
   body {
