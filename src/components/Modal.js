@@ -188,6 +188,7 @@ const Image = styled.img`
   width: 15rem;
   height: 7rem;
   margin: 0 auto;
+  object-fit: cover;
 `;
 
 const Input = styled.div`
