@@ -192,16 +192,3 @@ const Title = styled.h3`
   font-family: "dosis", sans-serif;
   font-size: 1.25rem;
 `;
-
-// const Description = styled.p`
-//   text-align: left;
-//   line-height: 100%;
-//   margin: 0;
-//   padding: 0.125rem 1rem;
-//   display: -webkit-box;
-//   -webkit-line-clamp: 2;
-//   -webkit-box-orient: vertical;
-//   font-size: 0.9rem;
-//   overflow: hidden;
-//   color: #555;
-// `;
