@@ -84,8 +84,6 @@ export default function Card({ recipe }) {
           </CardHeader>
 
           <Title>{title}</Title>
-
-          {/* .replace() is used to remove html tags from the text*/}
         </NavLink>
       </StyledCard>
     </CardContainer>
