@@ -37,24 +37,23 @@ export default function MealtimeCard({ recipe, slot, sched }) {
   return (
     <SlotCardContainer>
       <Card>
-        <img className="card__img" src={image ?? DefaultImage} alt={title} />
-        <div
-          className="card__info"
+        <img src={image ?? DefaultImage} alt={title} />
+        <Info
           onClick={() => {
             navigate(`/${id}`);
             setMeal(recipe);
           }}
         >
-          <p className="card__title">{title}</p>
+          <RecipeName>{title}</RecipeName>
           <p>for</p>
-          <p className="card__slot">{slot.toUpperCase()}</p>
-        </div>
+          <Slot>{slot.toUpperCase()}</Slot>
+        </Info>
       </Card>
 
-      <div className="card__buttons">
+      <Buttons>
         <EditBtn clickHandler={rescheduleHandler} />
         <DeleteBtn clickHandler={deleteSlotHandler} />
-      </div>
+      </Buttons>
     </SlotCardContainer>
   );
 }
@@ -68,23 +67,6 @@ const SlotCardContainer = styled.section`
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   overflow: hidden;
-
-  .card__buttons {
-    display: flex;
-    gap: 1rem;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-
-    button {
-      all: unset;
-    }
-
-    svg {
-      fill: #eee;
-      width: 1.5rem;
-    }
-  }
 `;
 
 const Card = styled.section`
@@ -93,40 +75,55 @@ const Card = styled.section`
   align-items: center;
   width: 100%;
 
-  .card__img {
+  img {
     position: absolute;
     width: 100%;
     height: 100%;
     z-index: -1;
     object-fit: cover;
   }
+`;
 
-  .card__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #eafffd;
-    width: 100%;
-    height: 100%;
+const Info = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #eafffd;
+  width: 100%;
+  height: 100%;
 
-    .card__title,
-    .card__slot,
-    p {
-      color: #eee;
-      margin: 0;
-      text-align: center;
-    }
+  p {
+    color: #eee;
+    margin: 0;
+    text-align: center;
+  }
+`;
 
-    .card__title {
-      font-size: 1.25rem;
-      font-weight: bold;
-      width: 90%;
-    }
+const RecipeName = styled.p`
+  font-size: 1.25rem;
+  font-weight: bold;
+  width: 90%;
+`;
 
-    .card__slot {
-      font-weight: bold;
-    }
+const Slot = styled.p`
+  font-weight: bold;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  button {
+    all: unset;
+  }
+
+  svg {
+    fill: #eee;
+    width: 1.5rem;
   }
 `;
