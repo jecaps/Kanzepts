@@ -18,20 +18,6 @@ describe("Recipe Card", () => {
     expect(titleElement).toBeInTheDocument();
   });
 
-  it("should render a short summary of the recipe", () => {
-    render(
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Card recipe={recipe} />} />
-        </Routes>
-      </BrowserRouter>
-    );
-    const descriptionElement = screen.getByText(
-      recipe.summary.replace(/<\/?[^>]+(>|$)/g, "")
-    );
-    expect(descriptionElement).toBeInTheDocument();
-  });
-
   it("should render a duration of the recipe", () => {
     render(
       <BrowserRouter>

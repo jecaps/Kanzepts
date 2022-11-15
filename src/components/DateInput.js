@@ -1,17 +1,15 @@
 export default function DateInput({ setDate }) {
   return (
-    <div className="form__input-container">
-      <label className="form__label" htmlFor="date">
-        Date
-      </label>
+    <div>
+      <label htmlFor="date">Date</label>
       <input
-        className="form__input"
+        min={new Date().toISOString().substring(0, 10)}
+        onChange={(e) => setDate(e.target.value)}
+        placeholder="dd.mm.yyyy"
         type="date"
         id="date"
-        min={new Date().toISOString().split("T")[0]}
-        onChange={(e) => setDate(e.target.value)}
         required
-      />
+      ></input>
     </div>
   );
 }

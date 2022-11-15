@@ -36,25 +36,24 @@ export default function MealtimeCard({ recipe, slot, sched }) {
 
   return (
     <SlotCardContainer>
-      <div className="card">
-        <img className="card__img" src={image ?? DefaultImage} alt={title} />
-        <div
-          className="card__info"
+      <Card>
+        <img src={image ?? DefaultImage} alt={title} />
+        <Info
           onClick={() => {
             navigate(`/${id}`);
             setMeal(recipe);
           }}
         >
-          <p className="card__title">{title}</p>
+          <RecipeName>{title}</RecipeName>
           <p>for</p>
-          <p className="card__slot">{slot.toUpperCase()}</p>
-        </div>
-      </div>
+          <Slot>{slot.toUpperCase()}</Slot>
+        </Info>
+      </Card>
 
-      <div className="card__buttons">
+      <Buttons>
         <EditBtn clickHandler={rescheduleHandler} />
         <DeleteBtn clickHandler={deleteSlotHandler} />
-      </div>
+      </Buttons>
     </SlotCardContainer>
   );
 }
@@ -65,70 +64,66 @@ const SlotCardContainer = styled.section`
   width: 90vw;
   height: 12rem;
   margin: 0.5rem auto;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
-  box-shadow: 1px 2px 4px #777;
   overflow: hidden;
+`;
 
-  .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const Card = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  img {
+    position: absolute;
     width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+`;
 
-    .card__img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      filter: blur(1.5px);
-      z-index: -1;
-      object-fit: cover;
-    }
+const Info = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #eafffd;
+  width: 100%;
+  height: 100%;
 
-    .card__info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #eafffd;
-      width: 100%;
-      height: 100%;
+  p {
+    color: #eee;
+    margin: 0;
+    text-align: center;
+  }
+`;
 
-      .card__title,
-      .card__slot,
-      p {
-        color: #fffcdd;
-        margin: 0;
-        text-align: center;
-      }
+const RecipeName = styled.p`
+  font-size: 1.25rem;
+  font-weight: bold;
+  width: 90%;
+`;
 
-      .card__title {
-        font-size: 1.25rem;
-        font-weight: bold;
-        width: 90%;
-      }
+const Slot = styled.p`
+  font-weight: bold;
+`;
 
-      .card__slot {
-        font-weight: bold;
-      }
-    }
+const Buttons = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  button {
+    all: unset;
   }
 
-  .card__buttons {
-    display: flex;
-    gap: 10px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-
-    button {
-      all: unset;
-    }
-
-    svg {
-      fill: #e6e8e6;
-      width: 1.1rem;
-    }
+  svg {
+    fill: #eee;
+    width: 1.5rem;
   }
 `;

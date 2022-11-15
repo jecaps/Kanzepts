@@ -10,14 +10,13 @@ export default function HistoryItem({ schedule, mealtime }) {
 
   return (
     <HistoryItemContainer>
-      <HistoryListItem image={schedule[mealtime].image}>
-        <div className="history__info">
+      <HistoryListItem>
+        <div>
           <img
-            className="history__bg"
             src={schedule[mealtime].image ?? DefaultImage}
             alt={schedule[mealtime].title}
           />
-          <p className="history__mealtime">{mealtime} </p>
+          <p>{mealtime} </p>
           <NavLink
             className="history__link"
             to={`/${schedule[mealtime].id}`}
@@ -39,38 +38,36 @@ const HistoryItemContainer = styled.div`
 const HistoryListItem = styled.li`
   overflow: hidden;
   border-radius: 0.5rem;
-  box-shadow: 2px 2px 4px #898989;
   position: relative;
   height: 7.5rem;
   padding: 1.8rem 0;
 
-  .history__bg {
+  img {
     position: absolute;
     width: 100%;
     object-fit: cover;
-    filter: blur(1px);
     z-index: -1;
   }
 
-  .history__info {
+  div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(254, 254, 227, 0.7);
-    color: #d63230;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
     width: 100%;
     height: 100%;
     padding: 0.25rem;
   }
 
-  .history__mealtime {
+  p {
     text-transform: capitalize;
     margin: 0;
     font-size: 0.75rem;
   }
 
-  .history__link {
+  a {
     all: unset;
     font-weight: bold;
   }

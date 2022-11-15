@@ -13,20 +13,18 @@ export default function Plan() {
   );
 
   return (
-    <Container schedule={schedule}>
-      {!schedule.length && (
-        <p className="plan__text">No meals added to the Meal Plan yet.</p>
-      )}
+    <PlanContainer schedule={schedule}>
+      {!schedule.length && <p>No meals added to the Meal Plan yet.</p>}
       {schedule.sort().map((sched) => (
         <MealDate key={nanoid()} date={sched} />
       ))}
 
       {showModal && <Modal />}
-    </Container>
+    </PlanContainer>
   );
 }
 
-const Container = styled.div`
+const PlanContainer = styled.div`
   width: 100%;
   height: 100vh;
   scroll-snap-type: x mandatory;
@@ -37,7 +35,7 @@ const Container = styled.div`
   // centers text when schedule is empty
   justify-content: ${({ schedule }) => (schedule.length ? "start" : "center")};
 
-  .plan__text {
+  p {
     text-align: center;
     margin: 0;
     font-weight: bold;

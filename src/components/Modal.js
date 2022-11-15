@@ -4,6 +4,7 @@ import { RecipeContext } from "../context/RecipeContext";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import DateInput from "./DateInput";
+import DefaulImage from "../image/default-placeholder.png";
 
 export default function Modal() {
   const {
@@ -22,7 +23,8 @@ export default function Modal() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function toggleModal() {
+  function toggleModal(e) {
+    e.preventDefault();
     setShowModal(!showModal);
   }
 
@@ -80,54 +82,46 @@ export default function Modal() {
 
   return (
     <ModalContainer>
-      <div className="modal__overlay" onClick={toggleModal}></div>
-      <form
-        className="form"
+      <Overlay onClick={toggleModal}></Overlay>
+
+      <Form
         onSubmit={
           location.pathname === "/plan"
             ? rescheduleHandler
             : scheduleMealHandler
         }
       >
-        <h3 className="form__title">Schedule Recipe</h3>
+        <Title>Add To Plan</Title>
+        <Recipe>{meal.title}</Recipe>
 
-        <div className="form__input-container">
-          <p className="form__label">Your Recipe</p>
-          <p className="form__recipe">{meal.title}</p>
-        </div>
+        <Input>
+          <DateInput setDate={setDate} />
 
-        <DateInput setDate={setDate} />
+          <div>
+            <label htmlFor="slots">Slot</label>
+            <select name="slots" id="slots" onChange={slotChecker} required>
+              <option value="" hidden>
+                Choose Slot
+              </option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snacks">Snacks</option>
+            </select>
+          </div>
+        </Input>
 
-        <div className="form__input-container">
-          <label className="form__label" htmlFor="slots">
-            Slot
-          </label>
-          <select
-            className="form__input"
-            name="slots"
-            id="slots"
-            onChange={slotChecker}
-            required
-          >
-            <option value="" hidden>
-              Choose Slot
-            </option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            <option value="snacks">Snacks</option>
-          </select>
-        </div>
+        <Image src={meal.image ?? DefaulImage} alt={meal.title} />
 
-        <div className="form__buttons">
-          <button className="form__button confirm" type="submit">
-            {location.pathname === "/plan" ? "Reschedule" : "Confirm"}
-          </button>
-          <button className="form__button cancel" onClick={toggleModal}>
+        <Buttons>
+          <button className="cancel" onClick={toggleModal}>
             Cancel
           </button>
-        </div>
-      </form>
+          <button className="confirm" type="submit">
+            {location.pathname === "/plan" ? "Reschedule" : "Confirm"}
+          </button>
+        </Buttons>
+      </Form>
     </ModalContainer>
   );
 }
@@ -140,86 +134,110 @@ const ModalContainer = styled.div`
   right: 0;
   bottom: 0;
   position: fixed;
-  color: #7d1100;
+  z-index: 10;
+`;
 
-  .modal__overlay {
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+const Overlay = styled.div`
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(255, 236, 210, 0.6);
+  backdrop-filter: blur(5px);
+`;
 
-  .form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 18rem;
-    height: 18rem;
-    padding: 1rem;
+const Form = styled.form`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 19rem;
+  height: 21rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  background: #fff;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.75rem;
+  color: #273043;
+`;
+
+const Title = styled.h3`
+  margin: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.1rem;
+`;
+
+const Recipe = styled.h4`
+  margin: 0;
+`;
+
+const Image = styled.img`
+  border: 1px solid #eee;
+  border-radius: 0.5rem;
+  background-position: center;
+  width: 15rem;
+  height: 7rem;
+  margin: 0 auto;
+  object-fit: cover;
+`;
+
+const Input = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  div {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin: auto;
-    background: #fff;
-    border-radius: 1rem;
+    width: 8rem;
+  }
 
-    .form__title {
-      margin: 0;
-    }
+  input,
+  select {
+    padding: 0.125rem;
+    font-size: 1rem;
+    color: #333;
+    background: #faf9f8;
+    border: 1px solid #c7c6c6;
+    border-radius: 4px;
+  }
 
-    .form__input-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  label {
+    font-size: 0.75rem;
+  }
+`;
 
-      .form__input,
-      .form__recipe {
-        width: 100%;
-        background-color: #f9f9f9;
-        border: 1px solid #b1c1c0;
-        border-radius: 0.25rem;
-        text-align: left;
-        padding: 0.125rem;
-        font-size: 1rem;
-        color: #333;
-      }
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 
-      .form__label {
-        font-weight: 600;
-      }
+  button {
+    all: unset;
+    width: 45% !important;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    margin: 0.25rem 0;
+  }
 
-      .form__label,
-      .form__recipe {
-        margin: 0;
-      }
-    }
+  .confirm {
+    background: #3cb85e;
+    border-radius: 24px;
+    color: #ffffff;
+  }
 
-    .form__buttons {
-      display: flex;
-      justify-content: space-evenly;
-
-      .form__button {
-        all: unset;
-        width: 45%;
-        padding: 0.5rem 0;
-        border-radius: 0.25rem;
-        font-weight: 600;
-      }
-
-      .confirm {
-        background-color: #52aa5e;
-        color: #fff;
-      }
-
-      .cancel {
-        color: #c20114;
-        border: 1px solid #c20114;
-      }
-    }
+  .cancel {
+    background: #cccccc;
+    border-radius: 24px;
+    color: #6b6a6a;
   }
 `;
