@@ -27,7 +27,6 @@ export default function Card({ recipe }) {
     dishTypes,
     cuisines,
     aggregateLikes,
-    // summary,
   } = recipe;
 
   return (
@@ -87,7 +86,6 @@ export default function Card({ recipe }) {
           <Title>{title}</Title>
 
           {/* .replace() is used to remove html tags from the text*/}
-          {/* <Description>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Description> */}
         </NavLink>
       </StyledCard>
     </CardContainer>
