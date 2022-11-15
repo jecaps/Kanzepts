@@ -5,8 +5,8 @@ export default function Instruction({ instruction }) {
 
   return (
     <InstructionContainer>
-      <p className="instruction__step">Step {number}:</p>
-      <p className="instruction__text">{step}</p>
+      <StepNum>Step {number}:</StepNum>
+      <Step>{step}</Step>
     </InstructionContainer>
   );
 }
@@ -17,12 +17,15 @@ const InstructionContainer = styled.div`
   width: 90%;
   margin: auto;
 
-  .instruction__step {
-    width: 20%;
-    font-weight: 500;
-  }
-
   .instruction__text {
-    width: 70%;
   }
+`;
+
+const StepNum = styled.p`
+  width: 20%;
+  font-weight: 500;
+`;
+
+const Step = styled.p`
+  width: 70%;
 `;

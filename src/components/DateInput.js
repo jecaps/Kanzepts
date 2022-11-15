@@ -3,7 +3,7 @@ export default function DateInput({ setDate }) {
     <div>
       <label htmlFor="date">Date</label>
       <input
-        min={new Date().toISOString().substring(0, 10)}
+        // min={new Date().toISOString().substring(0, 10)}
         onChange={(e) => setDate(e.target.value)}
         placeholder="dd.mm.yyyy"
         type="date"

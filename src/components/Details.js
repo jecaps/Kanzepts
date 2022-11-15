@@ -28,54 +28,52 @@ export default function Details() {
   return (
     <DetailsContainer>
       <GoBack />
-      <img className="details__img" src={image ?? DefaultImage} alt={title} />
-      <h2 className="details__title">{title}</h2>
+      <Image src={image ?? DefaultImage} alt={title} />
+      <Title>{title}</Title>
 
-      <div className="details__basic">
-        <div className="details__subdetails">
+      <BasicDetails>
+        <Subdetails>
           <TimeIcon />
-          <p className="details__subtext">{readyInMinutes}min.</p>
-        </div>
+          <SubText>{readyInMinutes}min.</SubText>
+        </Subdetails>
 
-        <div className="details__subdetails">
-          <p className="details__servings">{servings}</p>
-          <p className="details__subtext">Servings</p>
-        </div>
+        <Subdetails>
+          <Servings>{servings}</Servings>
+          <SubText>Servings</SubText>
+        </Subdetails>
 
-        <div className="details__subdetails">
+        <Subdetails>
           <AddToPlantBtn meal={meal} />
-          <p className="details__subtext">Add To Plan</p>
-        </div>
+          <SubText>Add To Plan</SubText>
+        </Subdetails>
 
-        <div className="details__subdetails">
+        <Subdetails>
           <FaveBtn recipe={meal} />
-          <p className="details__subtext">
-            Add{isFavorite ? "ed" : ""} To Favorites
-          </p>
-        </div>
-      </div>
+          <SubText>Add{isFavorite ? "ed" : ""} To Favorites</SubText>
+        </Subdetails>
+      </BasicDetails>
 
-      <p className="details__summary">
-        {summary.replace(/<\/?[^>]+(>|$)/g, "")}
-      </p>
+      <Summary>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Summary>
 
       <div className="details__ingredients">
-        <h3 className="details__subtitle">Ingredients</h3>
-        <ul className="details__list">
+        <h3>Ingredients</h3>
+        <ul>
           {extendedIngredients.map((ingredient) => (
             <Ingredient key={nanoid()} ingredient={ingredient} />
           ))}
         </ul>
       </div>
 
-      <div className="details__instructions">
-        <h3 className="details__subtitle">Instructions</h3>
-        <ul className="details__list">
-          {analyzedInstructions[0].steps.map((instruction) => (
-            <Instruction key={instruction.number} instruction={instruction} />
-          ))}
-        </ul>
-      </div>
+      {analyzedInstructions.length && (
+        <div className="details__instructions">
+          <h3>Instructions</h3>
+          <ul>
+            {analyzedInstructions[0].steps.map((instruction) => (
+              <Instruction key={instruction.number} instruction={instruction} />
+            ))}
+          </ul>
+        </div>
+      )}
 
       {showModal && <Modal />}
     </DetailsContainer>
@@ -102,74 +100,70 @@ const DetailsContainer = styled.div`
     }
   }
 
-  .details__img {
-    width: 100%;
-    margin: auto;
-  }
-
-  .details__title {
-    margin: 0;
-    padding: 1rem;
-    text-transform: capitalize;
-  }
-
-  .details__basic {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.5rem;
-    background-color: rgba(219, 66, 0, 0.9);
-    border-radius: 0.5rem;
-    color: #e6e8e6;
-    fill: #e6e8e6;
-    width: 90%;
-    margin: auto;
-
-    .details__subdetails {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 25%;
-
-      .details__subtext {
-        display: flex;
-        padding: 0.25rem;
-        font-size: 0.8rem;
-        height: 2rem;
-        align-items: center;
-      }
-
-      .details__servings {
-        font-size: 1rem;
-        font-weight: bold;
-      }
-    }
-
-    svg {
-      width: 1rem;
-    }
-  }
-
-  .details__summary {
-    text-align: justify;
-    padding: 0.75rem 0.5rem;
-  }
-
   .details__ingredients,
   .details__instructions {
-    .details__list {
+    ul {
       text-align: left;
       padding: 0;
     }
   }
 
-  .details__title,
-  .details__subtitle {
-    color: #db4200;
-  }
-
+  h2,
+  h3,
   p {
     margin: 0;
   }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  margin: auto;
+`;
+
+const Title = styled.h2`
+  padding: 1rem;
+  text-transform: capitalize;
+`;
+
+const BasicDetails = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgba(219, 66, 0, 0.9);
+  border-radius: 0.5rem;
+  color: #e6e8e6;
+  fill: #e6e8e6;
+  width: 90%;
+  margin: auto;
+
+  svg {
+    width: 1rem;
+  }
+`;
+
+const Subdetails = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 25%;.
+`;
+
+const SubText = styled.p`
+  display: flex;
+  padding: 0.25rem;
+  font-size: 0.8rem;
+  height: 2rem;
+  align-items: center;
+`;
+
+const Servings = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+const Summary = styled.p`
+  text-align: justify;
+  padding: 0.75rem 0.5rem;
 `;
