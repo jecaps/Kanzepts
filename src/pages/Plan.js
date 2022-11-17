@@ -39,6 +39,6 @@ const PlanContainer = styled.div`
     text-align: center;
     margin: 0;
     font-weight: bold;
-    color: #7d1100;
+    color: #eee;
   }
 `;

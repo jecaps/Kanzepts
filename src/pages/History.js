@@ -64,7 +64,7 @@ export default function History() {
 const HistoryTitle = styled.h2`
   margin: 0;
   padding: 1rem;
-  color: #7d1100;
+  color: #273043;
 `;
 
 const HistoryList = styled.article`

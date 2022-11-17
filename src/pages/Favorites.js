@@ -29,6 +29,6 @@ const CardsContainer = styled.ul`
 
   h2 {
     padding-top: 1rem;
-    color: #691e06;
+    color: #273043;
   }
 `;
