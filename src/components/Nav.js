@@ -21,7 +21,7 @@ export default function Nav() {
   );
 }
 const Navbar = styled.nav`
-  background-color: #e0e1dd;
+  background-color: #daf5ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
