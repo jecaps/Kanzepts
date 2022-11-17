@@ -1,6 +1,5 @@
 import SearchBtn from "./SearchBtn";
 import SearchInput from "./SearchInput";
-import logo from "../image/kanzepts-logo.png";
 import styled from "styled-components";
 import { SearchContext } from "../context/SearchContext";
 import { useState } from "react";
@@ -22,57 +21,57 @@ export default function Header() {
         setisLoading,
       }}
     >
-      <StyledHeader>
-        {isShown && <SearchInput />}
-        {!isShown && (
-          <>
-            <div>
-              <img src={logo} alt="kanzepts logo" />
-              <p>Kanzepts</p>
-            </div>
-            <SearchBtn />
-          </>
-        )}
-      </StyledHeader>
+      {isShown && (
+        <StyledHeader>
+          <SearchInput />
+          <button type="button" onClick={toggleSearchInput}>
+            Cancel
+          </button>
+        </StyledHeader>
+      )}
+      {!isShown && (
+        <StyledHeader>
+          <p>Kanzepts</p>
+          <SearchBtn />
+        </StyledHeader>
+      )}
     </SearchContext.Provider>
   );
 }
 
 const StyledHeader = styled.header`
-  background-color: #faca00;
-  display: flex;
+  background-color: #273043;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 10;
 
-  div {
-    display: flex;
-    align-items: center;
-    margin: auto;
-  }
-
-  img {
-    height: 35px;
-    color: #027373;
-  }
-
   p {
     margin: 0;
     font-family: "Annie Use Your Telescope", cursive;
     font-size: 1.5rem;
+    color: #ddd;
+    grid-column: 2 / 8;
+  }
+
+  form {
+    grid-column: 2 / 8;
   }
 
   button {
     all: unset;
     font-size: 0.8rem;
+    justify-content: end;
+    color: #ddd;
   }
 
   svg {
-    width: 25px;
-    fill: #0d0d0d;
+    width: 1.25rem;
+    fill: #ddd;
   }
 `;
