@@ -31,12 +31,11 @@ export default function Card({ recipe }) {
 
   return (
     <CardContainer>
-      <Buttons>
-        <FaveBtn recipe={recipe} />
-        <AddToPlanBtn meal={recipe} />
-      </Buttons>
-
       <StyledCard>
+        <Buttons>
+          <FaveBtn recipe={recipe} />
+          <AddToPlanBtn meal={recipe} />
+        </Buttons>
         <NavLink
           onClick={() => detailsPageNavigator(setMeal, recipe)}
           to={`/${id}`}
@@ -103,7 +102,7 @@ const Buttons = styled.div`
   gap: 5px;
   position: absolute;
   top: 0.35rem;
-  right: 3rem;
+  right: 2.25rem;
   background-color: rgba(0 0 0 / 0.6);
   border-radius: 0.75rem;
   padding: 0.25rem;
@@ -119,7 +118,7 @@ const Buttons = styled.div`
 const StyledCard = styled.div`
   list-style: none;
   margin: 1rem auto;
-  width: 80%;
+  width: 85%;
   background-color: #fff;
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
     0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
@@ -160,7 +159,7 @@ const Category = styled.li`
   padding: 0.25rem 0.5rem;
   border-radius: 1.5rem;
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 `;
 
 const DurationAndLikes = styled.div`
@@ -189,6 +188,5 @@ const DurationAndLikes = styled.div`
 const Title = styled.h3`
   margin: 0;
   padding: 1rem;
-  font-family: "dosis", sans-serif;
   font-size: 1.25rem;
 `;
