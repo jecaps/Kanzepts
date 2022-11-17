@@ -13,7 +13,7 @@ export default function MealDate({ date }) {
     <Section>
       <Date>{`${date.slice(8)} ${tellMonth(date)}`}</Date>
       <Day>{tellDayOfWeek(date)}</Day>
-      <div>
+      <CardList>
         {mealDate?.breakfast && (
           <MealtimeCard
             recipe={mealDate?.breakfast}
@@ -38,7 +38,7 @@ export default function MealDate({ date }) {
             sched={date}
           />
         )}
-      </div>
+      </CardList>
     </Section>
   );
 }
@@ -48,10 +48,18 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
   width: 100%;
   height: 90vh;
   scroll-snap-align: center;
+`;
+
+const CardList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 80%;
+  gap: 0.25rem;
+  margin: 0 0.5rem;
 `;
 
 const Date = styled.h5`
@@ -63,4 +71,5 @@ const Day = styled.h4`
   font-weight: 900;
   color: #273043;
   margin: 0;
+  padding-bottom: 1rem;
 `;

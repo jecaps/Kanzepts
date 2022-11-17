@@ -61,9 +61,9 @@ export default function MealtimeCard({ recipe, slot, sched }) {
 const SlotCardContainer = styled.section`
   position: relative;
   display: flex;
-  width: 90vw;
-  height: 12rem;
-  margin: 0.5rem auto;
+  width: 100%;
+  height: 100%;
+  margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   overflow: hidden;
@@ -90,19 +90,19 @@ const Info = styled.section`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
-  color: #eafffd;
   width: 100%;
   height: 100%;
 
   p {
-    color: #eee;
     margin: 0;
     text-align: center;
+    color: #eee;
   }
 `;
 
 const RecipeName = styled.p`
-  font-size: 1.25rem;
+  color: #30cfd0 !important;
+  font-size: 1.35rem;
   font-weight: bold;
   width: 90%;
 `;
@@ -112,18 +112,19 @@ const Slot = styled.p`
 `;
 
 const Buttons = styled.div`
-  display: flex;
-  gap: 1rem;
   position: absolute;
-  right: 10px;
-  top: 10px;
+  display: flex;
+  right: 0.5rem;
+  top: 0.5rem;
+  padding: 0;
+  gap: 0.5rem;
 
   button {
     all: unset;
   }
 
   svg {
-    fill: #eee;
-    width: 1.5rem;
+    fill: #aaa;
+    width: 1.25rem;
   }
 `;
