@@ -22,7 +22,7 @@ const IngredientContainer = styled.li`
 
 const Amount = styled.p`
   width: 40%;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const Name = styled.p`

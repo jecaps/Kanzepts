@@ -3,10 +3,14 @@ import SearchInput from "./SearchInput";
 import styled from "styled-components";
 import { SearchContext } from "../context/SearchContext";
 import { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function Header() {
   const [isShown, setIsShown] = useState(false);
   const [isLoading, setisLoading] = useState(false);
+
+  const { id } = useParams();
+  const path = useLocation().pathname.slice(1);
 
   function toggleSearchInput() {
     setIsShown(!isShown);
@@ -22,7 +26,7 @@ export default function Header() {
       }}
     >
       {isShown && (
-        <StyledHeader>
+        <StyledHeader isOnnDetailsPage={id === path}>
           <SearchInput />
           <button type="button" onClick={toggleSearchInput}>
             Cancel
@@ -30,7 +34,7 @@ export default function Header() {
         </StyledHeader>
       )}
       {!isShown && (
-        <StyledHeader>
+        <StyledHeader isOnnDetailsPage={id === path}>
           <p>Kanzepts</p>
           <SearchBtn />
         </StyledHeader>
@@ -41,7 +45,7 @@ export default function Header() {
 
 const StyledHeader = styled.header`
   background-color: #273043;
-  display: grid;
+  display: ${({ isOnnDetailsPage }) => (isOnnDetailsPage ? "none" : "grid")};
   grid-template-columns: repeat(8, 1fr);
   align-items: center;
   justify-content: space-between;

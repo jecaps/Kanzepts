@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { HomeIcon, FavoritesIcon, PlanIcon, HistoryIcon } from "./Icons";
 import styled from "styled-components";
 
 export default function Nav() {
+  const { id } = useParams();
+  const path = useLocation().pathname.slice(1);
+
   return (
-    <Navbar>
+    <Navbar isOnnDetailsPage={id === path}>
       <NavLink to="/" end>
         <HomeIcon />
       </NavLink>
@@ -21,8 +24,8 @@ export default function Nav() {
   );
 }
 const Navbar = styled.nav`
-  background-color: #daf5ff;
-  display: flex;
+  background-color: #f5f7fa;
+  display: ${({ isOnnDetailsPage }) => (isOnnDetailsPage ? "none" : "flex")};
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -41,6 +44,8 @@ const Navbar = styled.nav`
 
   .active {
     background-color: #273043;
+    border-radius: 1.5rem;
+    margin: 0.15rem;
 
     svg {
       fill: #30cfd0;
@@ -55,11 +60,6 @@ const Navbar = styled.nav`
   svg {
     width: 1.25rem;
     fill: #273043;
-    transition: 0.3s;
-
-    &:active,
-    &:hover {
-      transform: scale(1.25);
-    }
+    transition: 0.1s;
   }
 `;

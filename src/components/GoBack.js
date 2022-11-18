@@ -7,12 +7,11 @@ export default function GoBack() {
 
   return (
     <Button className="back-btn" onClick={() => navigate(-1)}>
-      <ArrowLeft /> <p>Back</p>
+      <ArrowLeft />
     </Button>
   );
 }
 
 const Button = styled.button`
   all: unset;
-  display: flex;
 `;
