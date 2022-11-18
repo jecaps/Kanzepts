@@ -259,5 +259,6 @@ const Summary = styled.div`
     all: unset;
     display: inline;
     color: #273043;
+    font-weight: 600;
   }
 `;
