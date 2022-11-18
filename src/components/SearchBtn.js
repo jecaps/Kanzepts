@@ -17,11 +17,11 @@ export default function SearchBtn() {
 }
 
 const Button = styled.button`
-  svg {
     ${({ pathname }) =>
       pathname === "/search" &&
-      `
-  fill: #DD0426;
-  `}
+      `svg {
+        width: 1.25rem;
+        fill: #30cfd0;
+      }`}
   }
 `;

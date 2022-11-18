@@ -14,7 +14,7 @@ export default function Search() {
       <GoBack />
       {!isLoading ? (
         <>
-          <h2 className="search__title">
+          <h2>
             {results.length
               ? `Results from "${prevQuery.current}"`
               : `"${prevQuery.current}" not found`}
@@ -36,24 +36,25 @@ const CardsContainer = styled.ul`
   padding: 0;
   position: relative;
 
-  .search__title {
+  h2 {
     padding-top: 1rem;
     margin: 0;
-    color: #691e06;
+    color: #273043;
   }
 
   .back-btn {
     position: absolute;
-    display: flex;
-    left: 0.75rem;
-    top: 0;
-    font-size: 0.85rem;
-    padding: 0.5rem 0.25rem;
-    color: #db4200;
+    top: 1.25rem;
+    left: 1.5rem;
+    background-color: rgba(39, 48, 67, 0.7);
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.25rem;
+    border-radius: 50%;
 
     svg {
       width: 1.25rem;
-      fill: #db4200;
+      fill: #f5f7fa;
     }
   }
 `;
