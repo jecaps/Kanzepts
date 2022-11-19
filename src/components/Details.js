@@ -121,15 +121,16 @@ const Container = styled.div`
     position: fixed;
     top: 0.5rem;
     left: 0.5rem;
-    background-color: rgba(39, 48, 67, 0.6);
-    width: 1rem;
-    height: 1rem;
+    background-color: rgba(39, 48, 67, 0.7);
+    width: 1.25rem;
+    height: 1.25rem;
     padding: 0.25rem;
-    border-radius: 50%;
+    border-radius: 0.5rem;
 
     svg {
-      width: 1rem;
+      width: 1.25rem;
       fill: #f5f7fa;
+      stroke: #eee;
     }
   }
 
@@ -154,7 +155,7 @@ const Buttons = styled.div`
   right: 0.5rem;
   display: flex;
   gap: 0.5rem;
-  background-color: rgba(39, 48, 67, 0.6);
+  background-color: rgba(39, 48, 67, 0.7);
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   fill: #eee;

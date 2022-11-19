@@ -16,6 +16,7 @@ const InstructionContainer = styled.div`
   justify-content: space-between;
   width: 80%;
   margin: auto;
+  padding-bottom: 0.5rem;
 `;
 
 const StepNum = styled.p`
@@ -24,5 +25,5 @@ const StepNum = styled.p`
 `;
 
 const Step = styled.p`
-  width: 70%;
+  width: 80%;
 `;
