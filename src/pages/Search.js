@@ -54,7 +54,8 @@ const CardsContainer = styled.ul`
 
     svg {
       width: 1.25rem;
-      fill: #f5f7fa;
+      fill: #eee;
+      stroke: #eee;
     }
   }
 `;
