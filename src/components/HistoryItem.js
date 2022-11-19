@@ -9,66 +9,60 @@ export default function HistoryItem({ schedule, mealtime }) {
   const { setMeal } = useContext(RecipeContext);
 
   return (
-    <HistoryItemContainer>
-      <HistoryListItem>
+    <HistoryListItem>
+      <NavLink
+        className="history__link"
+        to={`/${schedule[mealtime].id}`}
+        onClick={() => detailsPageNavigator(setMeal, schedule[mealtime])}
+      >
+        <img
+          src={schedule[mealtime].image ?? DefaultImage}
+          alt={schedule[mealtime].title}
+        />
         <div>
-          <img
-            src={schedule[mealtime].image ?? DefaultImage}
-            alt={schedule[mealtime].title}
-          />
-          <p>{mealtime} </p>
-          <NavLink
-            className="history__link"
-            to={`/${schedule[mealtime].id}`}
-            onClick={() => detailsPageNavigator(setMeal, schedule[mealtime])}
-          >
-            {schedule[mealtime].title}
-          </NavLink>
+          <p className="slot">{mealtime} </p>
+          <p className="recipe">{schedule[mealtime].title}</p>
         </div>
-      </HistoryListItem>
-    </HistoryItemContainer>
+      </NavLink>
+    </HistoryListItem>
   );
 }
 
-const HistoryItemContainer = styled.div`
-  position: relative;
-  width: 85%;
-`;
-
 const HistoryListItem = styled.li`
-  overflow: hidden;
-  border-radius: 0.5rem;
-  position: relative;
-  height: 7.5rem;
-  padding: 1.8rem 0;
-
-  img {
-    position: absolute;
-    width: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    width: 100%;
-    height: 100%;
-    padding: 0.25rem;
-  }
-
-  p {
-    text-transform: capitalize;
-    margin: 0;
-    font-size: 0.75rem;
-  }
+  background-color: #fff;
+  width: 85%;
+  border-radius: 0.75rem;
 
   a {
     all: unset;
-    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    padding: 0.25rem;
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 0.75rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .recipe {
+    font-weight: 600;
+    padding: 0 0.25rem;
+  }
+
+  .slot {
+    font-size: 0.8rem;
+  }
+
+  div {
+    width: 80%;
   }
 `;
