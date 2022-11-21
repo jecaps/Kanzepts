@@ -7,7 +7,7 @@ export default function Nav() {
   const path = useLocation().pathname.slice(1);
 
   return (
-    <Navbar isOnnDetailsPage={id === path}>
+    <Navbar isOnDetailsPage={id === path}>
       <NavLink to="/" end>
         <HomeIcon />
       </NavLink>
@@ -25,7 +25,7 @@ export default function Nav() {
 }
 const Navbar = styled.nav`
   background-color: #f5f7fa;
-  display: ${({ isOnnDetailsPage }) => (isOnnDetailsPage ? "none" : "flex")};
+  display: ${({ isOnDetailsPage }) => (isOnDetailsPage ? "none" : "flex")};
   justify-content: space-between;
   align-items: center;
   position: fixed;
