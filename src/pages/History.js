@@ -23,8 +23,8 @@ export default function History() {
           return (
             <HistoryList key={nanoid()}>
               <MealDate>
-                <Month>{tellMonth(mealDate)}</Month>
-                <Date>{mealDate.slice(8)}</Date>
+                <p>{tellMonth(mealDate)}</p>
+                <p className="date">{mealDate.slice(8)}</p>
               </MealDate>
 
               <MealsList>
@@ -69,47 +69,48 @@ const HistoryTitle = styled.h2`
 
 const HistoryList = styled.article`
   position: relative;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   display: flex;
   justify-content: space-between;
-  gap: 0.75rem;
   width: 95%;
   margin: auto;
 
   :not(:last-child) {
     ul {
-      border-bottom: 1px solid #ff9c08;
+      border-bottom: 1px solid #30cfd0;
     }
   }
 `;
 
 const MealDate = styled.div`
   position: absolute;
+  display: flex;
+  top: 0.5rem;
+  left: 0.75rem;
+  gap: 0.25rem;
   font-weight: bold;
-  width: 10%;
-`;
 
-const Month = styled.p`
-  margin: 0;
-  font-size: 0.6rem;
-  color: #7d1100;
-`;
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: git @github.com:neuefische / web-event-slides-hh-web-22-5.git;
+  }
 
-const Date = styled.p`
-  margin: 0;
-  font-size: 1.4rem;
-  color: #ff9c08;
+  .date {
+    color: #30cfd0;
+  }
 `;
 
 const MealsList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
-  padding-left: 0;
-  padding-bottom: 1rem;
+  padding: 1.25rem 0;
+  padding-top: 2rem;
   list-style: none;
+  margin: 0;
 `;
 
 const Meal = styled.div`
@@ -117,11 +118,11 @@ const Meal = styled.div`
   justify-content: space-between;
 
   button {
-    width: 10%;
+    width: 15%;
   }
 
   svg {
-    fill: #db4200;
-    width: 1.45rem;
+    fill: #273043;
+    width: 1.5rem;
   }
 `;

@@ -1,110 +1,136 @@
+import { useContext, useState } from "react";
+import { RecipeContext } from "../context/RecipeContext";
+import { nanoid } from "nanoid";
+import { TimeIcon } from "./Icons";
+import DefaultImage from "../image/default-placeholder.png";
 import Ingredient from "./Ingredient";
+import AddToPlantBtn from "./AddToPlanBtn";
 import Instruction from "./Instruction";
 import GoBack from "./GoBack";
-import AddToPlantBtn from "./AddToPlanBtn";
-import { useContext } from "react";
-import { RecipeContext } from "../context/RecipeContext";
-import styled from "styled-components";
-import { nanoid } from "nanoid";
-import DefaultImage from "../image/default-placeholder.png";
-import { TimeIcon } from "./Icons";
 import FaveBtn from "./FaveBtn";
 import Modal from "./Modal";
+import styled from "styled-components";
 
 export default function Details() {
   const { meal, showModal } = useContext(RecipeContext);
+  const [showMore, setShowMore] = useState(false);
+  const [ingredientIsActive, setIngredientIsActive] = useState(true);
+  const [instructionIsActive, setInstructionIsActive] = useState(false);
 
   const {
     image,
     title,
     readyInMinutes,
-    servings,
     extendedIngredients,
     summary,
     analyzedInstructions,
-    isFavorite,
   } = meal;
 
-  return (
-    <DetailsContainer>
-      <GoBack />
-      <Image src={image ?? DefaultImage} alt={title} />
-      <Title>{title}</Title>
+  const cleanedSummary = summary.replace(/<\/?[^>]+(>|$)/g, "");
 
-      <BasicDetails>
-        <Subdetails>
-          <TimeIcon />
-          <SubText>{readyInMinutes}min.</SubText>
-        </Subdetails>
-
-        <Subdetails>
-          <Servings>{servings}</Servings>
-          <SubText>Servings</SubText>
-        </Subdetails>
-
-        <Subdetails>
-          <AddToPlantBtn meal={meal} />
-          <SubText>Add To Plan</SubText>
-        </Subdetails>
-
-        <Subdetails>
-          <FaveBtn recipe={meal} />
-          <SubText>Add{isFavorite ? "ed" : ""} To Favorites</SubText>
-        </Subdetails>
-      </BasicDetails>
-
-      <Summary>{summary.replace(/<\/?[^>]+(>|$)/g, "")}</Summary>
-
-      <div className="details__ingredients">
-        <h3>Ingredients</h3>
-        <ul>
-          {extendedIngredients.map((ingredient) => (
-            <Ingredient key={nanoid()} ingredient={ingredient} />
-          ))}
-        </ul>
-      </div>
-
-      {analyzedInstructions.length && (
-        <div className="details__instructions">
-          <h3>Instructions</h3>
-          <ul>
-            {analyzedInstructions[0].steps.map((instruction) => (
-              <Instruction key={instruction.number} instruction={instruction} />
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {showModal && <Modal />}
-    </DetailsContainer>
-  );
-}
-
-const DetailsContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding-top: 0.5rem;
-  width: 90%;
-  margin: auto;
-  font-size: 0.9rem;
-  color: #7d1100;
-
-  .back-btn {
-    padding: 0.5rem 0.25rem;
-    color: #db4200;
-
-    svg {
-      width: 1rem;
-      fill: #db4200;
+  function activeHandler(btn) {
+    if (btn === "Ingredients") {
+      setIngredientIsActive(true);
+      setInstructionIsActive(false);
+    } else {
+      setIngredientIsActive(false);
+      setInstructionIsActive(true);
     }
   }
 
-  .details__ingredients,
-  .details__instructions {
-    ul {
-      text-align: left;
-      padding: 0;
+  return (
+    <Container>
+      <Image src={image ?? DefaultImage} alt={title} />
+      <GoBack />
+      <Buttons>
+        <AddToPlantBtn meal={meal} />
+        <FaveBtn recipe={meal} />
+      </Buttons>
+
+      <DetailsContainer>
+        <BasicDetails>
+          <h2>{title.toLowerCase()}</h2>
+          <div>
+            <TimeIcon />
+            <p>{readyInMinutes}min.</p>
+          </div>
+        </BasicDetails>
+
+        <Summary>
+          <p>
+            {showMore
+              ? `${cleanedSummary} `
+              : `${cleanedSummary.substring(0, 120)} `}
+          </p>
+          <button onClick={() => setShowMore(!showMore)}>
+            Read {showMore ? "Less" : "More"}
+          </button>
+        </Summary>
+
+        <MainDetails>
+          <Option
+            ingredientIsActive={ingredientIsActive}
+            instructionIsActive={instructionIsActive}
+          >
+            <button
+              className="ingredients"
+              onClick={() => activeHandler("Ingredients")}
+            >
+              Ingredients
+            </button>
+            <button
+              className="instructions"
+              onClick={() => activeHandler("Instructions")}
+            >
+              Instructions
+            </button>
+          </Option>
+          {ingredientIsActive && (
+            <ul>
+              {extendedIngredients.map((ingredient) => (
+                <Ingredient key={nanoid()} ingredient={ingredient} />
+              ))}
+            </ul>
+          )}
+
+          {analyzedInstructions.length !== 0 && instructionIsActive && (
+            <ul>
+              {analyzedInstructions[0].steps.map((instruction) => (
+                <Instruction
+                  key={instruction.number}
+                  instruction={instruction}
+                />
+              ))}
+            </ul>
+          )}
+        </MainDetails>
+      </DetailsContainer>
+
+      {showModal && <Modal />}
+    </Container>
+  );
+}
+
+const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #273043;
+
+  .back-btn {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    background-color: rgba(39, 48, 67, 0.7);
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+
+    svg {
+      width: 1.25rem;
+      fill: #f5f7fa;
+      stroke: #eee;
     }
   }
 
@@ -116,54 +142,124 @@ const DetailsContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: -10;
 `;
 
-const Title = styled.h2`
-  padding: 1rem;
-  text-transform: capitalize;
-`;
-
-const BasicDetails = styled.div`
+const Buttons = styled.div`
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: rgba(219, 66, 0, 0.9);
+  gap: 0.5rem;
+  background-color: rgba(39, 48, 67, 0.7);
+  padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
-  color: #e6e8e6;
-  fill: #e6e8e6;
-  width: 90%;
-  margin: auto;
+  fill: #eee;
+
+  svg {
+    width: 1.25rem;
+  }
+`;
+
+const DetailsContainer = styled.div`
+  position: fixed;
+  top: 13.5rem;
+  bottom: 0;
+  width: 100vw;
+  padding: 0 1.25rem;
+  background-color: #fff;
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  box-shadow: 0 -4px 20px #777;
+  overflow-y: scroll;
+`;
+
+const BasicDetails = styled.section`
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  align-items: center;
+  background-color: #fff;
+  fill: #777;
+  color: #777;
+
+  h2 {
+    text-align: left;
+    text-transform: capitalize;
+    color: #273043;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  div {
+    display: flex;
+    gap: 0.5rem;
+  }
 
   svg {
     width: 1rem;
   }
 `;
 
-const Subdetails = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 25%;.
+const MainDetails = styled.section`
+  padding: 0.5rem 0;
+
+  ul {
+    text-align: left;
+    padding: 0;
+  }
 `;
 
-const SubText = styled.p`
+const Option = styled.div`
   display: flex;
-  padding: 0.25rem;
-  font-size: 0.8rem;
-  height: 2rem;
-  align-items: center;
+  justify-content: space-between;
+  background-color: #eee;
+  width: 90%;
+  margin: 0.5rem auto;
+  padding: 0.2rem;
+  border-radius: 0.75rem;
+
+  button {
+    all: unset;
+    text-align: center;
+    border-radius: 0.75rem;
+    padding: 0.5rem 0;
+    width: 50%;
+    font-weight: bold;
+  }
+
+  .ingredients {
+    ${({ ingredientIsActive }) =>
+      ingredientIsActive && "background-color: #273043; color: #fff"};
+  }
+
+  .instructions {
+    ${({ instructionIsActive }) =>
+      instructionIsActive && "background-color: #273043; color: #fff"};
+  }
 `;
 
-const Servings = styled.p`
-  font-size: 1rem;
-  font-weight: bold;
-`;
-
-const Summary = styled.p`
+const Summary = styled.div`
   text-align: justify;
-  padding: 0.75rem 0.5rem;
+  padding: 0;
+  color: #777;
+
+  p {
+    display: inline;
+  }
+
+  button {
+    all: unset;
+    display: inline;
+    color: #273043;
+    font-weight: 600;
+  }
 `;

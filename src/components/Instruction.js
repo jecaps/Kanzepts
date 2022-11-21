@@ -14,18 +14,16 @@ export default function Instruction({ instruction }) {
 const InstructionContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
   margin: auto;
-
-  .instruction__text {
-  }
+  padding-bottom: 0.5rem;
 `;
 
 const StepNum = styled.p`
   width: 20%;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const Step = styled.p`
-  width: 70%;
+  width: 80%;
 `;

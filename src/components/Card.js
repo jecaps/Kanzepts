@@ -61,9 +61,9 @@ export default function Card({ recipe }) {
                 : veryPopular
                 ? "popular"
                 : diets.length
-                ? diets[Math.floor(Math.random() * diets.length)]
+                ? diets[0]
                 : dishTypes.length
-                ? dishTypes[Math.floor(Math.random() * dishTypes.length)]
+                ? dishTypes[0]
                 : cuisines.length
                 ? cuisines[0]
                 : "enjoyable"}
